@@ -1,0 +1,28 @@
+# Agentic Finance
+
+> Industry report, edition 1.0 (2026). Autonomous AI agents that decide and act inside mandates written by people are beginning to manage, move and settle institutional capital on blockchain rails. The report sets out what has to be true before the machine acts: a regulated custodian, final and cheap settlement, visible reasoning, attributable decisions and verifiable agent identity.
+
+Lead author: Marcus Maute, TensorX Swiss Representative (https://www.marcusmaute.com)
+Co-authors: TensorX, AMINA Bank, Solana Foundation, APEX:E3
+Guest contributions: Cardano Foundation × GLEIF; Blindsight
+Foreword: Tim Grant, Executive Chairman, TensorX
+Launch: CV Summit, Zurich, 29–30 September 2026
+Contact: research@tensorx.ai
+
+## Report
+
+- The full report (PDF) and its Markdown editions will be published at https://agenticfinancereport.com/ on 29–30 September 2026.
+
+## Contributors
+
+- [TensorX](https://tensorx.ai): sovereign AI infrastructure for regulated industries
+- [AMINA Bank](https://aminagroup.com): FINMA-regulated Swiss bank for digital assets
+- [Solana Foundation](https://solana.org): the public ledger for agent-scale settlement
+- [APEX:E3](https://apexe3.com): enterprise AI infrastructure for capital markets, operator of ALICE
+- [Cardano Foundation](https://cardanofoundation.org) × [GLEIF](https://www.gleif.org) (guest): verifiable organisational identity for autonomous agents
+- [Blindsight](https://blindsight.io) (guest): runtime protection for AI agents against prompt injection and data poisoning
+
+## Notes
+
+- Figures of $4.8 trillion addressable capital and ~200 bps uplift are modelled by APEX:E3, not measured.
+- For information only; not investment, legal or tax advice.
