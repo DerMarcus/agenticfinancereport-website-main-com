@@ -7,6 +7,7 @@
 @font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url(../fonts/Inter-500.woff2) format('woff2'); }
 @font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url(../fonts/Inter-600.woff2) format('woff2'); }
 @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(../fonts/JetBrainsMono-400.woff2) format('woff2'); }
+@font-face { font-family: 'Michroma'; font-style: normal; font-weight: 400; font-display: swap; src: url(../fonts/Michroma-400.woff2) format('woff2'); }
 @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url(../fonts/JetBrainsMono-500.woff2) format('woff2'); }
 
 :root {
@@ -165,11 +166,12 @@ html, body { overflow-x: clip; }
 .contributors { background: var(--cream); padding: 112px 0; border-top: 1px solid rgba(23,19,31,0.08); }
 .contributors .group-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-deep); margin: 0; font-weight: 400; }
 .contributors .group-label.guests { color: var(--muted); margin-top: 72px; }
-.co-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 20px; margin-top: 24px; }
+.co-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 20px; margin-top: 24px; }
 .co { border: 1px solid rgba(23,19,31,0.14); padding: 32px 28px; display: flex; flex-direction: column; gap: 14px; background: var(--white); }
 .co .logo { height: 34px; display: flex; align-items: center; }
 .co .logo img { height: 100%; width: auto; max-width: 100%; object-fit: contain; object-position: left center; }
 .co .logo img.h32 { height: 32px; }
+.co .logo img.h28 { height: 28px; }
 .co .logo img.h20 { height: 20px; }
 .co .logo img.h22 { height: 22px; }
 .co p { font-size: 15px; line-height: 1.5; color: var(--body); margin: 0; flex: 1; }
@@ -278,3 +280,62 @@ html, body { overflow-x: clip; }
 .agent-soon .label { color: var(--blue-deep); font-size: 11px; }
 .agent-soon p { font-size: 17px; line-height: 1.6; color: var(--body); margin: 14px 0 0; }
 .agent-soon code { font-family: var(--mono); font-size: 14px; background: rgba(23,19,31,0.06); padding: 1px 5px; font-variant-ligatures: none; }
+
+/* ---------- hero: launch venue ---------- */
+.byline .venue { display: inline-flex; align-items: center; gap: 14px; color: rgba(244,240,232,0.8); font-size: 15px; line-height: 1.4; text-decoration: none; }
+.byline .venue img { height: 36px; width: auto; }
+.byline .venue:hover { color: var(--ink-dark); text-decoration: none; }
+
+/* ---------- Launched at CV Summit (in CV Summit's own design: cvsummit.ch) ---------- */
+.cvs { --cvs-navy: #161D37; --cvs-plum: #42304E; --cvs-pink: #ED2E6E; --cvs-orange: #FF703E; --cvs-mich: 'Michroma', var(--display); }
+.cvs-hero { position: relative; color: #FFFFFF; padding: 72px 0 80px; background: linear-gradient(90deg, rgba(22,29,55,0.25) 0%, rgba(22,29,55,0) 45%, rgba(22,29,55,0.7) 100%), linear-gradient(160deg, #8E1E5A 0%, #5A2458 38%, #2A2447 70%, #161D37 100%); }
+.cvs-top { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 28px; }
+.cvs-logo { height: 60px; width: auto; }
+.cvs-when { font-family: var(--cvs-mich); font-size: clamp(18px, 2.4vw, 26px); line-height: 1.2; padding-left: 28px; border-left: 1px solid rgba(255,255,255,0.35); }
+.cvs-when span { display: block; font-family: var(--sans); font-size: 14px; color: rgba(255,255,255,0.8); margin-top: 6px; }
+.cvs-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 56px; }
+.cvs-hero h2 { font-family: var(--cvs-mich); font-weight: 400; font-size: clamp(30px, 5vw, 60px); line-height: 1.12; letter-spacing: 0; margin: 14px 0 0; }
+.cvs-tag { font-family: var(--cvs-mich); font-size: clamp(15px, 1.7vw, 19px); line-height: 1.45; color: rgba(255,255,255,0.9); margin: 18px 0 0; max-width: 30em; }
+.cvs-pill { display: inline-block; margin-top: 28px; padding: 12px 24px; border-radius: 999px; background: linear-gradient(90deg, var(--cvs-pink), var(--cvs-orange)); font-family: var(--cvs-mich); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: #FFFFFF; }
+.cvs-body { position: relative; padding: 72px 0 80px; color: var(--cvs-navy); background: radial-gradient(60% 50% at 0% 0%, rgba(237,46,110,0.10), transparent 70%), radial-gradient(50% 45% at 100% 20%, rgba(255,112,62,0.10), transparent 70%), #FBF9F8; }
+.cvs-body h3 { font-family: var(--cvs-mich); font-weight: 400; font-size: 24px; line-height: 1.3; margin: 0; color: var(--cvs-navy); }
+.cvs-intro { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 32px 56px; align-items: start; }
+.cvs-intro p { font-size: 17px; line-height: 1.65; margin: 16px 0 0; color: #2B3150; }
+.cvs-box { background: var(--cvs-navy); color: #FFFFFF; border-radius: 14px; padding: 26px 28px; }
+.cvs-box .k, .cvs-tracks .k, .cvs-partner .k, .cvs-ft .k { font-family: var(--cvs-mich); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+.cvs-box p { color: rgba(255,255,255,0.88); margin: 12px 0 0; font-size: 16px; line-height: 1.6; }
+.cvs-figs { list-style: none; margin: 48px 0 0; padding: 28px 32px; border-radius: 14px; background: linear-gradient(90deg, var(--cvs-pink), var(--cvs-orange)); color: #FFFFFF; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr)); gap: 20px 32px; }
+.cvs-figs b { display: block; font-family: var(--cvs-mich); font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; }
+.cvs-figs span { display: block; margin-top: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.9); }
+.cvs-tracks-h { margin-top: 56px !important; font-size: 18px !important; text-transform: uppercase; letter-spacing: 0.04em; }
+.cvs-tracks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 16px; margin-top: 20px; }
+.cvs-tracks > div { background: #FFFFFF; border-radius: 14px; padding: 22px 24px; box-shadow: 0 1px 0 rgba(22,29,55,0.06); border: 1px solid rgba(22,29,55,0.08); }
+.cvs-tracks .k { color: var(--cvs-navy); }
+.cvs-tracks p { font-size: 15px; line-height: 1.55; color: #2B3150; margin: 10px 0 0; }
+.cvs-foot { color: #FFFFFF; padding: 48px 0 44px; background: linear-gradient(100deg, #161D37 0%, #2A2447 45%, #7A2358 80%, #B42A63 100%); }
+.cvs-partners { display: flex; flex-wrap: wrap; align-items: center; gap: 28px 48px; }
+.cvs-partner { display: flex; align-items: center; gap: 16px; }
+.cvs-partner img { height: 56px; width: auto; }
+.cvs-partner .k { color: #FFFFFF; }
+.cvs-partner .v { font-size: 15px; color: rgba(255,255,255,0.85); margin-top: 6px; }
+.cvs-partner a, .cvs-site { color: #FFFFFF; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,0.5); }
+.cvs-partner a:hover, .cvs-site:hover { color: #FFFFFF; text-decoration-color: #FFFFFF; }
+.cvs-site { margin-left: auto; font-family: var(--cvs-mich); font-size: 18px; text-decoration: none; }
+.cvs-ft { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px 40px; align-items: center; margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.2); }
+.cvs-ft-mark .k { color: rgba(255,255,255,0.8); }
+.cvs-ft-mark img { height: 38px; width: auto; margin-top: 12px; }
+.cvs-ft p { font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.75); margin: 0; max-width: 46em; }
+.cvs-source { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.6); margin: 24px 0 0; }
+@media (max-width: 640px) {
+  .cvs-when { padding-left: 0; border-left: 0; }
+  .cvs-site { margin-left: 0; }
+  .cvs-ft { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* phones (<420px): tighter header so toggle + CTA fit side by side */
+@media (max-width: 419px) {
+  .site-header .wrap { padding: 0 14px; gap: 8px; }
+  .mode { gap: 2px; padding: 3px; }
+  .mode button { padding: 0 10px; gap: 6px; font-size: 14px; }
+  .header-cta { padding: 0 11px; font-size: 13px; }
+}
