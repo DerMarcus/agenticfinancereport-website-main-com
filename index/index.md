@@ -28,12 +28,12 @@ endorsement.
 
 | ID | Name | Layer | What | Status | Source | Confirmed |
 |---|---|---|---|---|---|---|
-| AFI-0001 | AMINA Bank | regulated-foundation | FINMA-regulated custody, settlement and fiat rails | in production | Report ed. 1.0, ch. 03, 08 | asked |
-| AFI-0002 | Solana | execution | Single global state, sub-second finality, stablecoin settlement, x402, payment channels | in production | Report ed. 1.0, ch. 04, 08 | asked |
-| AFI-0003 | TensorX | inference | Sovereign inference on EU hardware, zero retention, open-weight models, x402 | in production | Report ed. 1.0, ch. 05, 08 | asked |
-| AFI-0004 | ALICE (APEX:E3) | orchestration | Multi-agent orchestration for capital markets, traceable reasoning | in production | Report ed. 1.0, ch. 06, 08 | asked |
-| AFI-0005 | vLEI via Veridian (Cardano Foundation) | identity | Verifiable organisational identity for agents, KERI/ACDC | standards live; QVI accreditation in progress | Report ed. 1.0, ch. 07, 08 | asked |
-| AFI-0006 | Blindsight | runtime-protection | Checks that a proposed action matches the principal's request; injection and poisoning detection | in production (figures supplied, not independently verified) | Report ed. 1.0, guest contribution | asked |
+| AFI-0001 | AMINA Bank | regulated-foundation | FINMA-regulated custody, settlement and fiat rails | in production | Report ed. 1.0, ch. 03, 08 | pending |
+| AFI-0002 | Solana | execution | Single global state, sub-second finality, stablecoin settlement, x402, payment channels | in production | Report ed. 1.0, ch. 04, 08 | pending |
+| AFI-0003 | TensorX | inference | Sovereign inference on EU hardware, zero retention, open-weight models, x402 | in production | Report ed. 1.0, ch. 05, 08 | pending |
+| AFI-0004 | ALICE (APEX:E3) | orchestration | Multi-agent orchestration for capital markets, traceable reasoning | in production | Report ed. 1.0, ch. 06, 08 | pending |
+| AFI-0005 | vLEI via Veridian (Cardano Foundation) | identity | Verifiable organisational identity for agents, KERI/ACDC | standards live; QVI accreditation in progress | Report ed. 1.0, ch. 07, 08 | pending |
+| AFI-0006 | Blindsight | runtime-protection | Checks that a proposed action matches the principal's request; injection and poisoning detection | in production (figures supplied, not independently verified) | Report ed. 1.0, guest contribution | pending |
 | AFI-0007 | Neo (NFTNeo) | agent | Autonomous collector under a published mandate: can buy, cannot sell; publishes before acting | mandate declared; pre-launch | Open Mandate OM-0001 | yes (editor's project) |
 
 ## Register
@@ -51,7 +51,7 @@ not a rating, endorsement, attestation or investment advice.
 
 ## Corrections log
 
-- 2026-09-18: Index published with seven entries; operators AFI-0001 to AFI-0006 asked to confirm.
+- 2026-09-18: Index published with seven entries; operators AFI-0001 to AFI-0006 to be asked to confirm.
 
 ## Who runs this
 
