@@ -14,6 +14,13 @@ Contact: research@tensorx.ai
 
 - The full report (PDF) and its Markdown editions will be published at https://agenticfinancereport.com/ on 29–30 September 2026.
 
+## Agentic Finance Index and Open Mandate
+
+- [Agentic Finance Index](https://agenticfinancereport.com/index/): free register of agentic-finance deployments and infrastructure by layer and status, and of the mandates agents run under. Nobody pays to be listed; corrections are public. Data: https://agenticfinancereport.com/index/entries.json (CC0). Markdown: https://agenticfinancereport.com/index/index.md
+- [Open Mandate v0.1](https://agenticfinancereport.com/mandate/): open JSON Schema for a machine-readable agent mandate (permitted universe, caps, tiers, revocation, enforcement layer, audit). Schema: https://agenticfinancereport.com/mandate/schema.json. Declared mandates: https://agenticfinancereport.com/mandate/OM-0001.json (Neo, the lead author's own agent), https://agenticfinancereport.com/mandate/OM-0002.json (reference treasury mandate)
+- For agents: https://agenticfinancereport.com/skill.md, https://agenticfinancereport.com/openapi.json, https://agenticfinancereport.com/.well-known/agent-card.json
+- The Index and Open Mandate are initiatives of the lead author, separate from the co-authors; future home agenticfinanceindex.com. Contact: index@agenticfinancereport.com
+
 ## Contributors
 
 - [TensorX](https://tensorx.ai): sovereign AI infrastructure for regulated industries

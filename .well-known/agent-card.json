@@ -1,0 +1,24 @@
+{
+  "name": "Agentic Finance Report and Index",
+  "description": "The Agentic Finance Report (industry report, edition 1.0, 2026) and the Agentic Finance Index, a free register of agentic-finance deployments and the Open Mandate documents agents run under. Read-only, static, unauthenticated.",
+  "url": "https://agenticfinancereport.com/",
+  "version": "0.1.0",
+  "provider": { "organization": "Agentic Finance Index (editor: Marcus Maute)", "url": "https://agenticfinancereport.com/index/" },
+  "documentationUrl": "https://agenticfinancereport.com/skill.md",
+  "capabilities": { "streaming": false, "pushNotifications": false },
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["application/json", "text/markdown"],
+  "skills": [
+    { "id": "read-report", "name": "Read the Agentic Finance Report", "description": "Summary and full text of the report in Markdown, with printed page markers and numbered sources. Published 29 September 2026.", "tags": ["agentic finance", "report", "institutional finance"], "examples": ["What does the report say has to be true before an agent acts?"] },
+    { "id": "query-index", "name": "Query the Agentic Finance Index", "description": "List agentic-finance deployments and infrastructure by layer and status, with source and operator confirmation for each entry.", "tags": ["index", "register", "deployments"], "examples": ["Which identity layers for agents are in production?"] },
+    { "id": "open-mandate", "name": "Validate or fetch an Open Mandate", "description": "JSON Schema for machine-readable agent mandates and the declared mandates on file.", "tags": ["mandate", "governance", "schema"], "examples": ["Fetch OM-0001 and check it against the schema."] }
+  ],
+  "endpoints": {
+    "openapi": "https://agenticfinancereport.com/openapi.json",
+    "llms_txt": "https://agenticfinancereport.com/llms.txt",
+    "index": "https://agenticfinancereport.com/index/entries.json",
+    "mandate_schema": "https://agenticfinancereport.com/mandate/schema.json"
+  },
+  "pricing": "free",
+  "contact": "index@agenticfinancereport.com"
+}

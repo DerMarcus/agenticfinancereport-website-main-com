@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic Finance Index</title>
+<meta name="description" content="A free register of agentic-finance deployments and infrastructure, by layer and status, and of the mandates agents run under. Nobody pays to be listed. Published alongside the Agentic Finance Report.">
+<link rel="canonical" href="https://agenticfinancereport.com/index/">
+<meta name="theme-color" content="#090B20">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="text/markdown" href="index.md" title="This page in Markdown">
+<link rel="alternate" type="application/json" href="entries.json" title="Index entries (JSON)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agentic Finance Report">
+<meta property="og:title" content="Agentic Finance Index">
+<meta property="og:description" content="Who is actually in production in agentic finance, by layer and status, and the mandates their agents run under. Free. Nobody pays to be listed.">
+<meta property="og:url" content="https://agenticfinancereport.com/index/">
+<meta property="og:image" content="https://agenticfinancereport.com/assets/img/og.png">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Agentic Finance Index",
+  "description": "Register of agentic-finance deployments and infrastructure by layer and status, and of Open Mandate documents. Free; nobody pays to be listed; corrections are public.",
+  "url": "https://agenticfinancereport.com/index/",
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "version": "0.1",
+  "dateModified": "2026-09-18",
+  "isBasedOn": "https://agenticfinancereport.com/",
+  "creator": { "@type": "Person", "name": "Marcus Maute", "url": "https://www.marcusmaute.com" },
+  "distribution": [
+    { "@type": "DataDownload", "contentUrl": "https://agenticfinancereport.com/index/entries.json", "encodingFormat": "application/json" },
+    { "@type": "DataDownload", "contentUrl": "https://agenticfinancereport.com/index/index.md", "encodingFormat": "text/markdown" }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="page">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../">Agentic Finance Report</a>
+      <nav aria-label="Primary"><a class="header-cta" href="../mandate/">Open Mandate</a></nav>
+    </div>
+  </header>
+
+  <main class="doc">
+    <div class="wrap">
+      <p class="label doc-eyebrow">Agentic Finance Index · v0.1 · 18 September 2026</p>
+      <h1>Who is actually in production.</h1>
+      <p class="lede">A free register of agentic-finance deployments and infrastructure, by layer and status, and of the mandates their agents run under. It grows out of the <a href="../">Agentic Finance Report</a>, whose stack table and five preconditions are its schema. Nobody pays to be listed. Every entry says where its status comes from, and corrections are published.</p>
+
+      <section id="questions">
+        <h2>The three questions</h2>
+        <p>Any institution that transacts with an autonomous agent needs an answer to three things, in a form a machine can check:</p>
+        <ol class="doc-list">
+          <li><strong>Is this agent real, and who stands behind it?</strong> Identity: the vLEI, on-chain agent registries and the legal entity they resolve to.</li>
+          <li><strong>Is it actually bounded, or only instructed?</strong> The mandate: permitted universe, caps, tiers, revocation, and the layer that enforces each limit where the agent cannot reach it.</li>
+          <li><strong>Has it stayed inside its mandate so far?</strong> The record: a published, append-only log of what the agent proposed, did and was blocked from doing.</li>
+        </ol>
+        <p>The Index registers the answers operators give to the second question today, and lists the infrastructure that answers the first. The third is the next step: attestation, where an independent party checks that the declared enforcement exists. It is not offered yet, and nothing here is an attestation, a rating or an endorsement.</p>
+      </section>
+
+      <section id="rules">
+        <h2>The rules</h2>
+        <ul class="doc-list">
+          <li><strong>Nobody pays to be listed.</strong> No listing fees, no paid placement, no metered access to the data. The Index is free and its data is public domain (CC0).</li>
+          <li><strong>The listed party does not set its own status.</strong> Status comes from a published source, named in each entry. Operators can confirm or dispute an entry; both are recorded.</li>
+          <li><strong>Corrections are public.</strong> Every change to an entry is logged below with its date and reason. Entries are never silently edited.</li>
+          <li><strong>The editor's own projects are listed under the same rules</strong> and carry a disclosure line. The Index will be operated independently of every organisation it lists; until the separate entity exists, this page states who runs it.</li>
+        </ul>
+      </section>
+
+      <section id="entries">
+        <h2>Entries</h2>
+        <p class="doc-note">Seven entries at launch. Status labels follow the report's convention: <em>in production</em>, <em>standards live</em>, <em>forward-looking</em>. "Confirmed" records whether the operator has confirmed the entry as written; each has been asked. Data: <a href="entries.json">entries.json</a>.</p>
+        <div class="table-wrap">
+        <table class="doc-table">
+          <thead><tr><th>ID</th><th>Name</th><th>Layer</th><th>What</th><th>Status</th><th>Source</th><th>Confirmed</th></tr></thead>
+          <tbody>
+            <tr><td>AFI-0001</td><td><a href="https://aminagroup.com" rel="noopener">AMINA Bank</a></td><td>Regulated foundation</td><td>FINMA-regulated custody, settlement and fiat rails anchoring autonomous execution</td><td>In production</td><td>Report ed. 1.0, ch. 03, 08</td><td>Asked</td></tr>
+            <tr><td>AFI-0002</td><td><a href="https://solana.org" rel="noopener">Solana</a></td><td>Execution</td><td>Single global state, sub-second finality, stablecoin settlement, x402, payment channels</td><td>In production</td><td>Report ed. 1.0, ch. 04, 08</td><td>Asked</td></tr>
+            <tr><td>AFI-0003</td><td><a href="https://tensorx.ai" rel="noopener">TensorX</a></td><td>Inference</td><td>Sovereign inference on EU hardware, zero retention, open-weight models, agent-payable via x402</td><td>In production</td><td>Report ed. 1.0, ch. 05, 08</td><td>Asked</td></tr>
+            <tr><td>AFI-0004</td><td><a href="https://apexe3.com" rel="noopener">ALICE (APEX:E3)</a></td><td>Orchestration</td><td>Multi-agent orchestration for capital markets, private deployment, traceable reasoning</td><td>In production</td><td>Report ed. 1.0, ch. 06, 08</td><td>Asked</td></tr>
+            <tr><td>AFI-0005</td><td><a href="https://cardanofoundation.org" rel="noopener">vLEI via Veridian</a></td><td>Identity</td><td>Verifiable organisational identity for agents (vLEI, KERI/ACDC) on public blockchains</td><td>Standards live; QVI accreditation in progress</td><td>Report ed. 1.0, ch. 07, 08</td><td>Asked</td></tr>
+            <tr><td>AFI-0006</td><td><a href="https://blindsight.io" rel="noopener">Blindsight</a></td><td>Runtime protection</td><td>Checks that an agent's proposed action matches what its principal asked for; injection and poisoning detection</td><td>In production; figures supplied by the operator, not independently verified</td><td>Report ed. 1.0, guest contribution</td><td>Asked</td></tr>
+            <tr><td>AFI-0007</td><td><a href="https://github.com/DerMarcus/nftneo" rel="noopener">Neo (NFTNeo)</a></td><td>Agent</td><td>Autonomous collector of on-chain generative art under a published mandate: can buy, structurally cannot sell; publishes each decision before acting. <a href="../mandate/OM-0001.json">OM-0001</a></td><td>Mandate declared; pre-launch, no acquisition yet</td><td>Open Mandate OM-0001</td><td>Yes (editor's project, see disclosure)</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section id="register">
+        <h2>Register a deployment or a mandate</h2>
+        <p>Listing is free. Two ways in:</p>
+        <ul class="doc-list">
+          <li><strong>A deployment.</strong> Email <a href="mailto:index@agenticfinancereport.com">index@agenticfinancereport.com</a> with the operator, the layer, what runs, the jurisdiction, and a public source for its status (a regulatory filing, a client reference, on-chain activity, a published case). Entries without a public source are listed as <em>declared</em>.</li>
+          <li><strong>A mandate.</strong> Write it against the <a href="../mandate/">Open Mandate schema</a> and send the JSON document, or open a pull request in the <a href="https://github.com/DerMarcus/agenticfinancereport-website-main-com" rel="noopener">site repository</a>. The Index assigns the ID and lists it as <em>declared</em>.</li>
+        </ul>
+        <p>Agents can do this too: <code>curl -s https://agenticfinancereport.com/skill.md</code> describes every endpoint.</p>
+      </section>
+
+      <section id="methodology">
+        <h2>Methodology, v0.1</h2>
+        <ul class="doc-list">
+          <li><strong>Layers</strong> follow the report's stack: regulated foundation, execution, inference, orchestration, identity, runtime protection, and agents themselves.</li>
+          <li><strong>Status</strong> is <em>in production</em> when a public source shows clients or live activity; <em>standards live</em> when the standard exists and deployment is in progress; <em>forward-looking</em> when it is announced or designed but not running; <em>declared</em> when the only source is the operator. The source is named in every entry.</li>
+          <li><strong>Figures</strong> supplied by an operator and not independently verified are labelled as such wherever they appear.</li>
+          <li><strong>Disputes.</strong> An operator or a third party can dispute an entry by email with a source. The dispute, the evidence and the outcome are logged in the corrections below.</li>
+          <li><strong>What the Index is not.</strong> Not a rating, not an endorsement, not an attestation, not investment advice. Attestation of enforcement is a separate service that does not exist yet and will not be sold to the party being attested.</li>
+        </ul>
+      </section>
+
+      <section id="corrections">
+        <h2>Corrections log</h2>
+        <table class="doc-table"><thead><tr><th>Date</th><th>Entry</th><th>Change</th><th>Reason</th></tr></thead>
+        <tbody><tr><td>2026-09-18</td><td>All</td><td>Index published with seven entries</td><td>Launch; operators AFI-0001 to AFI-0006 asked to confirm</td></tr></tbody></table>
+      </section>
+
+      <section id="about">
+        <h2>Who runs this</h2>
+        <p>The Agentic Finance Index is edited by <a href="https://www.marcusmaute.com" rel="noopener">Marcus Maute</a>, lead author of the Agentic Finance Report, as an initiative separate from the report's co-authors. It will move to its own address, agenticfinanceindex.com, under an entity that is independent of every organisation it lists; this address will keep working. Neo (AFI-0007, OM-0001) is the editor's own project and is listed under the same rules as every other entry.</p>
+        <p class="doc-note">Machine access: <a href="entries.json">entries.json</a> · <a href="index.md">index.md</a> · <a href="../openapi.json">openapi.json</a> · <a href="../.well-known/agent-card.json">agent-card.json</a> · <a href="../skill.md">skill.md</a> · <a href="../llms.txt">llms.txt</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="grad-line" aria-hidden="true"></div>
+      <div class="foot-grid">
+        <div><div class="domain">agenticfinancereport.com/index</div></div>
+        <div class="wide">
+          <p>For information only; not investment, legal or tax advice. The Index lists deployments and mandates; it does not rate, attest or endorse them.</p>
+          <a class="dl" href="../#disclaimer">Read the report's full disclaimer</a>
+        </div>
+      </div>
+      <p class="copyright">Index data © no rights reserved (CC0 1.0). Report © 2026 AMINA Bank AG, Solana Foundation, TensorX, APEX:E3 and Cardano Foundation.</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

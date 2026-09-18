@@ -14,6 +14,13 @@
 /llms.txt
   Content-Type: text/plain; charset=utf-8
 
+/*.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/.well-known/*
+  Access-Control-Allow-Origin: *
+
 /agentic-finance-report-v1.pdf
   Content-Type: application/pdf
   Content-Disposition: inline; filename="Agentic_Finance_Report_v1.0.pdf"

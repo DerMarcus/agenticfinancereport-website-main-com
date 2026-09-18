@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Mandate v0.1</title>
+<meta name="description" content="An open, machine-readable schema for an autonomous agent's mandate: what it may do, within what limits, enforced where, revocable by whom and audited how. Draft v0.1, from the Agentic Finance Report.">
+<link rel="canonical" href="https://agenticfinancereport.com/mandate/">
+<meta name="theme-color" content="#090B20">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="text/markdown" href="index.md" title="This page in Markdown">
+<link rel="alternate" type="application/schema+json" href="schema.json" title="Open Mandate JSON Schema">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Agentic Finance Report">
+<meta property="og:title" content="Open Mandate v0.1">
+<meta property="og:description" content="A mandate that exists only in a prompt is not a mandate. Open Mandate is the machine-readable form: limits, tiers, revocation, and the layer that enforces each one.">
+<meta property="og:url" content="https://agenticfinancereport.com/mandate/">
+<meta property="og:image" content="https://agenticfinancereport.com/assets/img/og.png">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "name": "Open Mandate v0.1",
+  "description": "An open JSON Schema for machine-readable agent mandates, derived from the Agentic Finance Report.",
+  "url": "https://agenticfinancereport.com/mandate/",
+  "version": "0.1",
+  "datePublished": "2026-09-18",
+  "isBasedOn": "https://agenticfinancereport.com/",
+  "author": { "@type": "Person", "name": "Marcus Maute", "url": "https://www.marcusmaute.com" },
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+}
+</script>
+</head>
+<body>
+<div class="page">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../">Agentic Finance Report</a>
+      <nav aria-label="Primary"><a class="header-cta" href="../index/">Agentic Finance Index</a></nav>
+    </div>
+  </header>
+
+  <main class="doc">
+    <div class="wrap">
+      <p class="label doc-eyebrow">Open Mandate · draft v0.1 · 18 September 2026</p>
+      <h1>The mandate, in a form a machine can enforce.</h1>
+      <p class="lede">The <a href="../">Agentic Finance Report</a> makes one claim about governance: a boundary that exists only in a prompt is not a boundary. The mandate has to be written down and enforced where the agent cannot reach it. Open Mandate is that mandate as a document: what the agent may do, within what limits, enforced by which layer, revocable by whom, and audited how. It is an open JSON Schema, public domain, and anyone may implement it.</p>
+
+      <section id="fields">
+        <h2>What a mandate contains</h2>
+        <p>The fields come from the report's treasury envelope (chapter 03), its governance tiers (chapter 02) and its five preconditions (chapter 08). Schema: <a href="schema.json">schema.json</a> (JSON Schema 2020-12).</p>
+        <div class="table-wrap">
+        <table class="doc-table">
+          <thead><tr><th>Field</th><th>What it declares</th></tr></thead>
+          <tbody>
+            <tr><td><code>principal</code></td><td>Who answers for the agent: the legal or natural person, its LEI or vLEI, its jurisdiction.</td></tr>
+            <tr><td><code>agent</code></td><td>Name, identity (vLEI, ERC-8004, Solana attestation, Masumi or other) and runtime. <code>holds_keys</code> must be false: the reasoning layer never holds a signing key.</td></tr>
+            <tr><td><code>permitted_universe</code></td><td>The instruments the agent may hold or move, by kind and reference.</td></tr>
+            <tr><td><code>venues_allowlist</code> · <code>counterparties_allowlist</code></td><td>Where and with whom it may transact. Empty means none.</td></tr>
+            <tr><td><code>caps</code></td><td>Per transaction, per day, under management, and the time window.</td></tr>
+            <tr><td><code>prohibited_actions</code></td><td>What is structurally impossible: transfer out, sell, arbitrary calls, change its own mandate.</td></tr>
+            <tr><td><code>tiers</code></td><td>Operational (the agent acts alone), tactical (it proposes, a person confirms), strategic (people decide without it), and the ticket size above which a person signs.</td></tr>
+            <tr><td><code>revocation</code></td><td>Who can withdraw the mandate mid-session, by what mechanism, with what timelock.</td></tr>
+            <tr><td><code>enforcement</code></td><td>For each limit: the layer (custody, signer, token, rail, identity, runtime), the mechanism, and a URL to the published policy or contract.</td></tr>
+            <tr><td><code>audit</code></td><td>Where the ledger is, whether decisions are published before they execute, and in what format.</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section id="conformance">
+        <h2>Conformance</h2>
+        <p>A document that validates against the schema is well-formed. It is <em>conformant</em> when, in addition:</p>
+        <ul class="doc-list">
+          <li>every <code>enforcement</code> entry names a control outside the reasoning layer and links to published evidence;</li>
+          <li><code>agent.runtime.holds_keys</code> is false;</li>
+          <li><code>prohibited_actions</code> is not empty;</li>
+          <li><code>revocation</code> names a mechanism that works without the agent's cooperation.</li>
+        </ul>
+        <p>Status vocabulary: <em>declared</em> (submitted by the operator), <em>attested</em> (enforcement independently verified; not yet offered), <em>revoked</em>.</p>
+      </section>
+
+      <section id="mandates">
+        <h2>Declared mandates</h2>
+        <div class="table-wrap">
+        <table class="doc-table">
+          <thead><tr><th>ID</th><th>Agent</th><th>Principal</th><th>Summary</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><a href="OM-0001.json">OM-0001</a></td><td>Neo (NFTNeo)</td><td>Marcus Maute, personal project</td><td>Autonomous collector of on-chain generative art. May buy on allowlisted venues within a daily cap; cannot sell, transfer out or make arbitrary calls, enforced in the Safe module and mirrored in the signing enclave. Publishes every valuation before it buys; append-only ledger.</td><td>Declared; pre-launch, no acquisition yet. Editor's own project, listed under the same rules.</td></tr>
+            <tr><td><a href="OM-0002.json">OM-0002</a></td><td>Treasury agent (reference)</td><td>Example corporate treasury</td><td>The report's treasury envelope as a mandate: money-market fund, stablecoin and fiat universe; custodian rails and allowlisted venues; USD 5 million per ticket, 150 million under management; sweeps, invoices, conversions and collateral at the operational tier; allocation shifts and new counterparties at the tactical tier; enforcement in custody, token, identity and runtime layers.</td><td>Reference document, illustrative values, not a live deployment.</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section id="declare">
+        <h2>Declare a mandate</h2>
+        <ol class="doc-list">
+          <li>Write the document against <a href="schema.json">schema.json</a>. OM-0002 is a complete example for a treasury; OM-0001 for an agent with on-chain custody.</li>
+          <li>Validate it (any JSON Schema 2020-12 validator) and check the four conformance points above.</li>
+          <li>Send it to <a href="mailto:index@agenticfinancereport.com">index@agenticfinancereport.com</a>, or open a pull request adding it under <code>mandate/</code> in the <a href="https://github.com/DerMarcus/agenticfinancereport-website-main-com" rel="noopener">site repository</a>. The Index assigns the ID and lists it as <em>declared</em>. Free, and not an endorsement.</li>
+        </ol>
+        <p class="doc-note">Agents: <code>curl -s https://agenticfinancereport.com/skill.md</code>. Machine access: <a href="schema.json">schema.json</a> · <a href="index.md">index.md</a> · <a href="../openapi.json">openapi.json</a> · <a href="../index/entries.json">Index entries</a></p>
+      </section>
+
+      <section id="about">
+        <h2>Status of this draft</h2>
+        <p>Version 0.1 is a draft for comment, published with the report's launch. The five co-authors of the report are the first organisations invited to implement it against what they already run; nothing here is theirs unless they say so. The schema is public domain (CC0) and will be maintained by the <a href="../index/">Agentic Finance Index</a>. Proposals by email or pull request.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="grad-line" aria-hidden="true"></div>
+      <div class="foot-grid">
+        <div><div class="domain">agenticfinancereport.com/mandate</div></div>
+        <div class="wide">
+          <p>For information only; not investment, legal or tax advice. A declared mandate is the operator's statement; listing is not an attestation.</p>
+          <a class="dl" href="../#disclaimer">Read the report's full disclaimer</a>
+        </div>
+      </div>
+      <p class="copyright">Open Mandate schema © no rights reserved (CC0 1.0).</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agenticfinancereport.com/mandate/schema.json",
+  "title": "Open Mandate v0.1",
+  "description": "A machine-readable mandate for an autonomous agent that holds or moves value: what it may do, within what limits, enforced where, revocable by whom, and audited how. Draft v0.1, derived from the Agentic Finance Report, edition 1.0 (the treasury envelope in chapter 03, the governance tiers in chapter 02 and the five preconditions in chapter 08). Published by the Agentic Finance Index. A mandate that exists only in a prompt is not a mandate: every entry in `enforcement` must point at a control the agent cannot reach.",
+  "type": "object",
+  "required": ["mandate_id", "schema_version", "principal", "agent", "permitted_universe", "caps", "prohibited_actions", "tiers", "revocation", "enforcement", "audit", "declared_at"],
+  "properties": {
+    "mandate_id": { "type": "string", "pattern": "^OM-[0-9]{4}$", "description": "Assigned by the Index on registration, e.g. OM-0001." },
+    "schema_version": { "const": "0.1" },
+    "status": { "type": "string", "enum": ["declared", "attested", "revoked"], "description": "declared: submitted by the operator. attested: enforcement independently verified (not yet offered). revoked: the principal has withdrawn the mandate." },
+    "principal": {
+      "type": "object", "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "description": "The legal or natural person who answers for the agent." },
+        "legal_entity_identifier": { "type": "string", "description": "LEI or vLEI if one exists." },
+        "jurisdiction": { "type": "string", "description": "ISO 3166-1 alpha-2." }
+      }
+    },
+    "agent": {
+      "type": "object", "required": ["name", "identity"],
+      "properties": {
+        "name": { "type": "string" },
+        "identity": {
+          "type": "object", "required": ["type", "ref"],
+          "properties": {
+            "type": { "type": "string", "enum": ["vlei", "erc-8004", "solana-attestation", "masumi", "other"] },
+            "ref": { "type": "string", "description": "The credential, token, attestation or registry entry." }
+          }
+        },
+        "runtime": {
+          "type": "object",
+          "properties": {
+            "model": { "type": "string", "description": "The model or models doing the reasoning." },
+            "inference_provider": { "type": "string" },
+            "version_pinned": { "type": "boolean", "description": "True if the runtime is pinned and replayable." },
+            "holds_keys": { "const": false, "description": "The reasoning layer must not hold signing keys. A mandate with holds_keys true is not conformant." }
+          }
+        }
+      }
+    },
+    "permitted_universe": {
+      "type": "array", "minItems": 1,
+      "items": { "type": "object", "required": ["kind", "ref"], "properties": {
+        "kind": { "type": "string", "description": "e.g. money-market-fund, stablecoin, fiat, nft-collection, compute" },
+        "ref": { "type": "string", "description": "Contract address, ISIN, ticker or name." }
+      } }
+    },
+    "venues_allowlist": { "type": "array", "items": { "type": "string" }, "description": "Contracts, exchanges or rails the agent may transact through. Empty means none." },
+    "counterparties_allowlist": { "type": "array", "items": { "type": "string" } },
+    "caps": {
+      "type": "object", "required": ["currency"],
+      "properties": {
+        "currency": { "type": "string" },
+        "per_transaction": { "type": "number" },
+        "per_day": { "type": "number" },
+        "under_management": { "type": "number" },
+        "time_window": { "type": "string", "description": "When the agent may act, e.g. 24x7 or business hours in a named zone." }
+      }
+    },
+    "prohibited_actions": {
+      "type": "array", "minItems": 1, "items": { "type": "string" },
+      "description": "Actions that are structurally impossible, e.g. transfer_out, sell, arbitrary_contract_call, change_own_mandate."
+    },
+    "tiers": {
+      "type": "object", "required": ["operational", "tactical", "strategic"],
+      "description": "The three governance tiers of the report: what the agent does alone, what it proposes for a person to confirm, what people decide without it.",
+      "properties": {
+        "operational": { "type": "array", "items": { "type": "string" } },
+        "tactical": { "type": "array", "items": { "type": "string" } },
+        "strategic": { "type": "array", "items": { "type": "string" } },
+        "escalation_above": { "type": "number", "description": "Ticket size above which a person signs off." }
+      }
+    },
+    "revocation": {
+      "type": "object", "required": ["by", "mechanism"],
+      "properties": {
+        "by": { "type": "string" },
+        "mechanism": { "type": "string", "description": "How the mandate is withdrawn mid-session, e.g. Safe owner pause, custody policy switch, credential revocation." },
+        "timelock": { "type": "string" }
+      }
+    },
+    "enforcement": {
+      "type": "array", "minItems": 1,
+      "description": "Where each limit is enforced, outside the reasoning layer.",
+      "items": { "type": "object", "required": ["control", "layer", "mechanism"], "properties": {
+        "control": { "type": "string", "description": "Which limit this enforces, e.g. caps.per_day, prohibited_actions.transfer_out" },
+        "layer": { "type": "string", "enum": ["custody", "signer", "token", "rail", "identity", "runtime", "other"] },
+        "mechanism": { "type": "string" },
+        "evidence_url": { "type": "string", "format": "uri", "description": "Published policy, contract or configuration." }
+      } }
+    },
+    "audit": {
+      "type": "object", "required": ["ledger_url"],
+      "properties": {
+        "ledger_url": { "type": "string", "format": "uri" },
+        "publishes_before_acting": { "type": "boolean" },
+        "format": { "type": "string" }
+      }
+    },
+    "declared_at": { "type": "string", "format": "date" },
+    "source_report": { "type": "string", "description": "Where the mandate's design is described, if published." }
+  }
+}

@@ -29,7 +29,7 @@ CONFIG = {
     "DATE_ISO": "2026-09-29",
     "PDF": "agentic-finance-report-v1.pdf",
 }
-REPORT_RC = "RC17"   # the release the site is built from; swap for the final release at launch
+REPORT_RC = "RC18"   # the release the site is built from; swap for the final release at launch
 REPORT_PDF = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.pdf"
 REPORT_FULL_MD = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.full.md"
 REPORT_SUMMARY_MD = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.summary.md"
@@ -108,6 +108,13 @@ else:
              f"- [Full report (Markdown)]({SITE}/agentic-finance-report.md): every chapter, the guest contribution, every source and the disclaimer, with printed page markers\n"
              f"- [Machine-readable summary (Markdown)]({SITE}/agentic-finance.summary.md)\n")
 llms += f"""
+## Agentic Finance Index and Open Mandate
+
+- [Agentic Finance Index]({SITE}/index/): free register of agentic-finance deployments and infrastructure by layer and status, and of the mandates agents run under. Nobody pays to be listed; corrections are public. Data: {SITE}/index/entries.json (CC0). Markdown: {SITE}/index/index.md
+- [Open Mandate v0.1]({SITE}/mandate/): open JSON Schema for a machine-readable agent mandate (permitted universe, caps, tiers, revocation, enforcement layer, audit). Schema: {SITE}/mandate/schema.json. Declared mandates: {SITE}/mandate/OM-0001.json (Neo, the lead author's own agent), {SITE}/mandate/OM-0002.json (reference treasury mandate)
+- For agents: {SITE}/skill.md, {SITE}/openapi.json, {SITE}/.well-known/agent-card.json
+- The Index and Open Mandate are initiatives of the lead author, separate from the co-authors; future home agenticfinanceindex.com. Contact: index@agenticfinancereport.com
+
 ## Contributors
 
 - [TensorX](https://tensorx.ai): sovereign AI infrastructure for regulated industries
@@ -124,7 +131,7 @@ llms += f"""
 """
 (root / "llms.txt").write_text(llms, encoding="utf-8")
 
-urls = [f"{SITE}/"] + ([] if PRELAUNCH else [f"{SITE}/{f}" for f in REPORT_FILES])
+urls = [f"{SITE}/", f"{SITE}/index/", f"{SITE}/mandate/"] + ([] if PRELAUNCH else [f"{SITE}/{f}" for f in REPORT_FILES])
 (root / "sitemap.xml").write_text(
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n", encoding="utf-8")
@@ -143,6 +150,13 @@ headers = """/*
 
 /llms.txt
   Content-Type: text/plain; charset=utf-8
+
+/*.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/.well-known/*
+  Access-Control-Allow-Origin: *
 
 /{CONFIG["PDF"]}
   Content-Type: application/pdf

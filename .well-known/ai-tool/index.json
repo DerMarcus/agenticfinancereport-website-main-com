@@ -1,0 +1,14 @@
+{
+  "name": "Agentic Finance Index",
+  "version": "0.1.0",
+  "description": "Free register of agentic-finance deployments and infrastructure by layer and status, and of Open Mandate documents (machine-readable agent mandates). Nobody pays to be listed; corrections are public.",
+  "homepage": "https://agenticfinancereport.com/index/",
+  "openapi": "https://agenticfinancereport.com/openapi.json",
+  "skill": "https://agenticfinancereport.com/skill.md",
+  "agent_card": "https://agenticfinancereport.com/.well-known/agent-card.json",
+  "methodology": "https://agenticfinancereport.com/index/#methodology",
+  "pricing": { "model": "free", "notes": "No listing fees, no paid placement, no metering." },
+  "data_license": "CC0-1.0",
+  "operator": { "name": "Agentic Finance Index", "editor": "Marcus Maute", "contact": "index@agenticfinancereport.com" },
+  "future_domain": "https://agenticfinanceindex.com/"
+}
