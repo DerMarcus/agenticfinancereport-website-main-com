@@ -339,3 +339,22 @@ html, body { overflow-x: clip; }
   .mode button { padding: 0 10px; gap: 6px; font-size: 14px; }
   .header-cta { padding: 0 11px; font-size: 13px; }
 }
+
+/* ---------- imprint and privacy pages ---------- */
+.legal-header .wrap { justify-content: flex-start; }
+.legal-home { color: var(--ink-dark); font-family: var(--display); font-size: 15px; }
+.legal-home:hover { color: var(--blue-light); text-decoration: none; }
+.legal { background: var(--white); padding: 72px 0 96px; min-height: calc(100vh - 68px); }
+.legal .wrap { max-width: 760px; }
+.legal .label { color: var(--blue-deep); font-size: 11px; }
+.legal h1 { font-family: var(--display); font-weight: 500; font-size: clamp(34px, 4.6vw, 48px); letter-spacing: -0.03em; margin: 14px 0 32px; }
+.legal h2 { font-family: var(--display); font-weight: 500; font-size: 20px; letter-spacing: -0.015em; margin: 36px 0 10px; }
+.legal p { font-size: 16px; line-height: 1.65; color: var(--body); margin: 0 0 12px; }
+.legal code { font-family: var(--mono); font-size: 14px; background: rgba(23,19,31,0.06); padding: 1px 5px; }
+.legal-date { color: var(--muted) !important; font-size: 14px !important; }
+.legal-foot { margin-top: 48px !important; padding-top: 20px; border-top: 1px solid rgba(23,19,31,0.12); font-size: 14px !important; }
+.disclaimer .applies { font-size: 14px; line-height: 1.6; color: var(--muted); margin: 0 0 18px; column-span: all; }
+.site-footer .legal-links { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 16px; }
+.site-footer .legal-links a { color: var(--blue-light); font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+.site-footer .legal-links a:hover { color: var(--ink-dark); }
+.site-footer .copyright + .copyright { margin-top: 10px; padding-top: 0; border-top: 0; }
