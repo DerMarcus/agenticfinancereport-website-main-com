@@ -12,7 +12,7 @@ Contact: research@tensorx.ai
 
 ## Report
 
-- The full report (PDF) and its Markdown editions will be published at https://agenticfinancereport.com/ on 29–30 September 2026.
+- The full report (PDF) and its Markdown editions will be published at https://www.agenticfinancereport.com/ on 29–30 September 2026.
 
 ## First agent built on the report's principles
 

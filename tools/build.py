@@ -34,7 +34,7 @@ REPORT_PDF = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.pdf"
 REPORT_FULL_MD = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.full.md"
 REPORT_SUMMARY_MD = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.summary.md"
 
-SITE = "https://agenticfinancereport.com"
+SITE = "https://www.agenticfinancereport.com"
 root = pathlib.Path(__file__).resolve().parent.parent
 repo = root.parent.parent
 REPORT_FILES = [CONFIG["PDF"], "agentic-finance-report.md", "agentic-finance.summary.md"]
