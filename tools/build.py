@@ -29,7 +29,7 @@ CONFIG = {
     "DATE_ISO": "2026-09-29",
     "PDF": "agentic-finance-report-v1.pdf",
 }
-REPORT_RC = "RC19"   # the release the site is built from; swap for the final release at launch
+REPORT_RC = "RC20"   # the release the site is built from; swap for the final release at launch
 REPORT_PDF = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.pdf"
 REPORT_FULL_MD = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.full.md"
 REPORT_SUMMARY_MD = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.summary.md"
@@ -96,7 +96,7 @@ Guest contribution: Blindsight
 Foreword: Tim Grant, Executive Chairman, TensorX
 Launch: CV Summit 2026, Kongresshaus Zurich, {CONFIG["DATE"]} (https://www.cvsummit.ch), organised by CV Labs
 Distribution partner: CV VC AG, Zug (https://www.cvvc.com)
-Contact: research@tensorx.ai
+Contact: research@agenticfinancereport.com
 
 ## Report
 
