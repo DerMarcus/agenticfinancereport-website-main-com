@@ -12,6 +12,7 @@ The disclaimer is inserted verbatim from the report master (AMINA's page, printe
 drift from the PDF's legal text.
 """
 import pathlib
+import hashlib
 import re
 import shutil
 import sys
@@ -83,6 +84,13 @@ for k, v in CONFIG.items():
 left = re.findall(r"\{\{[A-Z_]+\}\}", out.split('<script type="text/markdown"')[0])
 if left:
     sys.exit("unfilled placeholders: %s" % left)
+# Cache busting. /assets/* is served immutable for a year (see _headers), so a returning visitor
+# would keep the old CSS/JS after a deploy: the evidence module stayed uninitialised that way on
+# 2026-09-24. Stamp both files with a short content hash so each build gets its own URL.
+for _asset in ("assets/css/site.css", "assets/js/site.js"):
+    _digest = hashlib.md5((root / _asset).read_bytes()).hexdigest()[:8]
+    out = out.replace(f'"{_asset}"', f'"{_asset}?v={_digest}"')
+
 (root / "index.html").write_text(out, encoding="utf-8")
 
 # ---------------------------------------------------------------- discovery files and headers
