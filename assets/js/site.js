@@ -100,3 +100,131 @@
     if (location.hash === '#agent') setMode('agent', { scroll: true });
   });
 })();
+
+(function () {
+  'use strict';
+
+  // Evidence charts (#findings, after .cards): tabbed bar chart, plain divs with a CSS height
+  // percentage. No-op if the block isn't on the page. Bars carry a pre-computed --v inline style as
+  // a no-JS fallback (see index.template.html); this recomputes the same percentage from
+  // data-value so the underlying numbers only appear once in the markup.
+  var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  function setupChart(chart) {
+    var tabs = Array.prototype.slice.call(chart.querySelectorAll('[role="tab"]'));
+    var panels = Array.prototype.slice.call(chart.querySelectorAll('[role="tabpanel"]'));
+    if (!tabs.length || !panels.length) return;
+
+    function panelFor(tab) {
+      var id = tab.getAttribute('aria-controls');
+      return id ? document.getElementById(id) : null;
+    }
+
+    function computePercents(panel) {
+      var bars = Array.prototype.slice.call(panel.querySelectorAll('.ev-bar[data-value]'));
+      if (!bars.length) return;
+      var max = 0;
+      bars.forEach(function (b) {
+        var v = parseFloat(b.getAttribute('data-value'));
+        if (!isNaN(v) && v > max) max = v;
+      });
+      if (max <= 0) return;
+      bars.forEach(function (b) {
+        var v = parseFloat(b.getAttribute('data-value')) || 0;
+        var pct = Math.round((v / max) * 1000) / 10;
+        b.style.setProperty('--v', pct + '%');
+      });
+    }
+    panels.forEach(computePercents);
+
+    function animatePanel(panel) {
+      var bars = Array.prototype.slice.call(panel.querySelectorAll('.ev-bar'));
+      var values = Array.prototype.slice.call(panel.querySelectorAll('.ev-value'));
+      if (reduceMotion) {
+        bars.forEach(function (b) {
+          b.style.transitionDelay = '0s';
+          b.style.height = b.style.getPropertyValue('--v') || '';
+        });
+        values.forEach(function (v) {
+          v.style.transitionDelay = '0s';
+          v.style.opacity = '1';
+          v.style.transform = 'none';
+        });
+        return;
+      }
+      var targets = bars.map(function (b) { return b.style.getPropertyValue('--v') || '0%'; });
+      bars.forEach(function (b) { b.style.transitionDelay = '0s'; b.style.height = '0%'; });
+      values.forEach(function (v) {
+        v.style.transitionDelay = '0s';
+        v.style.opacity = '0';
+        v.style.transform = 'translateY(8px)';
+      });
+      // force a reflow so height:0% is committed before transitioning back up
+      void panel.offsetWidth;
+      bars.forEach(function (b, i) {
+        b.style.transitionDelay = (i * 80) + 'ms';
+        b.style.height = targets[i];
+      });
+      values.forEach(function (v, i) {
+        v.style.transitionDelay = (150 + i * 80) + 'ms';
+        v.style.opacity = '1';
+        v.style.transform = 'translateY(0)';
+      });
+    }
+
+    function activateTab(tab, opts) {
+      opts = opts || {};
+      tabs.forEach(function (t) {
+        var selected = t === tab;
+        t.setAttribute('aria-selected', String(selected));
+        t.tabIndex = selected ? 0 : -1;
+      });
+      panels.forEach(function (p) { p.hidden = true; });
+      var panel = panelFor(tab);
+      if (panel) {
+        panel.hidden = false;
+        if (opts.animate) animatePanel(panel);
+      }
+      if (opts.focus) tab.focus();
+    }
+
+    tabs.forEach(function (tab, idx) {
+      tab.addEventListener('click', function () { activateTab(tab, { animate: true }); });
+      tab.addEventListener('keydown', function (e) {
+        var next = null;
+        if (e.key === 'ArrowRight') next = (idx + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') next = (idx - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = tabs.length - 1;
+        if (next !== null) {
+          e.preventDefault();
+          activateTab(tabs[next], { animate: true, focus: true });
+        }
+      });
+    });
+
+    // Bars mount at height 0 and grow the first time the block is ~35% visible; tabs do not
+    // rotate on their own.
+    var revealed = false;
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      var active = tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0];
+      var panel = panelFor(active);
+      if (panel) animatePanel(panel);
+    }
+
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { reveal(); io.disconnect(); }
+        });
+      }, { threshold: 0.35 });
+      io.observe(chart);
+    } else {
+      reveal();
+    }
+  }
+
+  document.querySelectorAll('.ev-chart').forEach(setupChart);
+})();
