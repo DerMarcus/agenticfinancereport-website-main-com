@@ -142,8 +142,8 @@
       var values = Array.prototype.slice.call(panel.querySelectorAll('.ev-value'));
       if (reduceMotion) {
         bars.forEach(function (b) {
-          b.style.transitionDelay = '0s';
-          b.style.height = b.style.getPropertyValue('--v') || '';
+          b.style.transitionDelay = '';
+          b.style.height = '';   // stylesheet height: var(--v), no transition to run
         });
         values.forEach(function (v) {
           v.style.transitionDelay = '0s';
@@ -152,18 +152,34 @@
         });
         return;
       }
-      var targets = bars.map(function (b) { return b.style.getPropertyValue('--v') || '0%'; });
-      bars.forEach(function (b) { b.style.transitionDelay = '0s'; b.style.height = '0%'; });
+      // Targets in pixels, measured from the track after the panel is visible. A percentage height
+      // applied while the panel was still display:none does not resolve, and re-setting the same
+      // string is a no-op, so a freshly revealed panel would sit at 0. The inline height is removed
+      // when the transition ends, handing the bar back to the stylesheet's height: var(--v).
+      var targets = bars.map(function (b) {
+        var track = b.parentElement;
+        var pct = parseFloat(b.style.getPropertyValue('--v')) || 0;
+        return Math.round((track.clientHeight * pct) / 100) + 'px';
+      });
+      bars.forEach(function (b) { b.style.transitionDelay = '0s'; b.style.height = '0px'; });
       values.forEach(function (v) {
         v.style.transitionDelay = '0s';
         v.style.opacity = '0';
         v.style.transform = 'translateY(8px)';
       });
-      // force a reflow so height:0% is committed before transitioning back up
+      // force a reflow so height:0 is committed before transitioning back up
       void panel.offsetWidth;
       bars.forEach(function (b, i) {
         b.style.transitionDelay = (i * 80) + 'ms';
         b.style.height = targets[i];
+        var done = function (e) {
+          if (e && e.propertyName !== 'height') return;
+          b.removeEventListener('transitionend', done);
+          b.style.height = '';          // back to height: var(--v), so it stays right on resize
+          b.style.transitionDelay = '';
+        };
+        b.addEventListener('transitionend', done);
+        setTimeout(done, 1200 + i * 80); // in case the transition never fires (background tab)
       });
       values.forEach(function (v, i) {
         v.style.transitionDelay = (150 + i * 80) + 'ms';
