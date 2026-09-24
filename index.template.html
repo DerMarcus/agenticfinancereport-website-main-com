@@ -195,48 +195,67 @@
 
   <section id="findings" class="findings" aria-labelledby="findings-h">
     <div class="wrap">
-      <h2 id="findings-h" class="h2">What the evidence shows.</h2>
-      <div class="cards">
-        <div class="card">
-          <div class="fig">~176m</div>
-          <p class="claim">On-chain agent transactions in the twelve months to April 2026, worth about $73 million, most between one and ten cents.</p>
-          <p class="caveat">The count supports the argument; the dollar volume does not yet. <span class="src">Keyrock via Hashed Emergent</span></p>
-        </div>
-        <div class="card">
-          <div class="fig">15–25%</div>
-          <p class="claim">Of US e-commerce handled by AI agents by 2030.</p>
-          <p class="caveat">Forecast. <span class="src">Bain &amp; Company</span></p>
-        </div>
-        <div class="card">
-          <div class="fig">$4.8tn+</div>
-          <p class="claim">Addressable capital over five years.</p>
-          <p class="caveat"><span class="src">Modelled by APEX:E3, not measured</span></p>
-        </div>
-        <div class="card">
-          <div class="fig">~200 bps</div>
-          <p class="claim">A year from continuous intraday allocation on a $500 million treasury.</p>
-          <p class="caveat"><span class="src">Modelled by APEX:E3, not measured</span></p>
-        </div>
-        <div class="card type">
-          <div class="fig">Weeks to deploy, months to govern.</div>
-          <p class="claim">Start with idle cash, where the mandate fits on a page.</p>
-        </div>
-      </div>
+      <div class="ev2">
+        <div class="ev2-left">
+          <div class="ev2-eyebrow">Evidence</div>
+          <h2 id="findings-h" class="h2">What the evidence shows.</h2>
+          <p class="ev2-lead">BlackRock's Digital Assets Research team published <em>The Machine-Native Economy</em> in September 2026: AI is machine-native intelligence, digital assets are machine-native money, and agentic commerce needs rails built for machine speed. Its figures put the rails this report describes in context.</p>
 
-      <div class="evidence">
-        <h3 class="ev-h3">The wider evidence.</h3>
-        <p class="ev-lead">BlackRock's Digital Assets Research team published <em>The Machine-Native Economy</em> in September 2026: AI is machine-native intelligence, digital assets are machine-native money, and agentic commerce needs rails built for machine speed. Its figures put the rails this report describes in context.</p>
-        <p class="ev-note">BlackRock is not a participant in this report and has not reviewed or endorsed it.</p>
+          <div class="ev2-tabs" role="tablist" aria-label="The wider evidence">
+            <button type="button" class="ev2-tab" role="tab" id="ev-tab-1" aria-controls="ev-panel-1" aria-selected="true" tabindex="0">
+              <span class="ev2-tab-title">Agents today</span>
+              <span class="ev2-tab-desc">Measured on-chain settlement by agents.</span>
+              <span class="ev2-tab-bar" aria-hidden="true"><span class="ev2-tab-fill"></span></span>
+            </button>
+            <button type="button" class="ev2-tab" role="tab" id="ev-tab-2" aria-controls="ev-panel-2" aria-selected="false" tabindex="-1">
+              <span class="ev2-tab-title">Payment volume</span>
+              <span class="ev2-tab-desc">Stablecoins against the card networks.</span>
+              <span class="ev2-tab-bar" aria-hidden="true"><span class="ev2-tab-fill"></span></span>
+            </button>
+            <button type="button" class="ev2-tab" role="tab" id="ev-tab-3" aria-controls="ev-panel-3" aria-selected="false" tabindex="-1">
+              <span class="ev2-tab-title">Growth</span>
+              <span class="ev2-tab-desc">Compound growth, 2020 to 2025.</span>
+              <span class="ev2-tab-bar" aria-hidden="true"><span class="ev2-tab-fill"></span></span>
+            </button>
+            <button type="button" class="ev2-tab" role="tab" id="ev-tab-4" aria-controls="ev-panel-4" aria-selected="false" tabindex="-1">
+              <span class="ev2-tab-title">The opportunity</span>
+              <span class="ev2-tab-desc">Forecast and modelled, not measured.</span>
+              <span class="ev2-tab-bar" aria-hidden="true"><span class="ev2-tab-fill"></span></span>
+            </button>
+          </div>
+        </div>
 
-        <div class="ev-chart">
-          <div class="ev-tabs" role="tablist" aria-label="The wider evidence">
-            <button type="button" class="ev-tab" role="tab" id="ev-tab-1" aria-controls="ev-panel-1" aria-selected="true" tabindex="0">Payment volume</button>
-            <button type="button" class="ev-tab" role="tab" id="ev-tab-2" aria-controls="ev-panel-2" aria-selected="false" tabindex="-1">Growth</button>
-            <button type="button" class="ev-tab" role="tab" id="ev-tab-3" aria-controls="ev-panel-3" aria-selected="false" tabindex="-1">Agent settlement today</button>
+        <div class="ev2-right">
+          <div class="ev2-panel" id="ev-panel-1" role="tabpanel" aria-labelledby="ev-tab-1" tabindex="0">
+            <h3 class="ev2-panel-h">Agent-driven settlement is real, and still small.</h3>
+            <div class="ev-figs">
+              <div class="ev-fig-item">
+                <div class="ev-fig-num">~176m</div>
+                <div class="ev-fig-label">On-chain agent transactions</div>
+              </div>
+              <div class="ev-fig-item">
+                <div class="ev-fig-num">~$73m</div>
+                <div class="ev-fig-label">Value settled</div>
+              </div>
+              <div class="ev-fig-item">
+                <div class="ev-fig-num">1–10c</div>
+                <div class="ev-fig-label">Typical transaction</div>
+              </div>
+            </div>
+            <table class="sr-only">
+              <caption>Agents today: on-chain agent settlement</caption>
+              <thead><tr><th scope="col">Metric</th><th scope="col">Value</th></tr></thead>
+              <tbody>
+                <tr><td>On-chain agent transactions</td><td>~176m</td></tr>
+                <tr><td>Value settled</td><td>~$73m</td></tr>
+                <tr><td>Typical transaction</td><td>1–10c</td></tr>
+              </tbody>
+            </table>
+            <p class="ev-caveat">Twelve months to April 2026. The count supports this report's argument; the dollar volume does not yet. <span class="src">Keyrock, via Hashed Emergent</span></p>
           </div>
 
-          <div class="ev-panel" id="ev-panel-1" role="tabpanel" aria-labelledby="ev-tab-1" tabindex="0">
-            <h4 class="ev-panel-h">Stablecoins now move volume in the same range as the card networks.</h4>
+          <div class="ev2-panel" id="ev-panel-2" role="tabpanel" aria-labelledby="ev-tab-2" tabindex="0">
+            <h3 class="ev2-panel-h">Stablecoins now move volume in the same range as the card networks.</h3>
             <div class="ev-unit">US$ trillions, 2025</div>
             <div class="ev-bars" aria-hidden="true">
               <div class="ev-bar-col">
@@ -267,8 +286,8 @@
             <p class="ev-caveat">Not directly comparable: Visa reports total volume including cash, Mastercard reports gross dollar volume, and the stablecoin figure is adjusted to exclude internal transfers and high-frequency activity. <span class="src">Visa Onchain Analytics and Allium, via BlackRock, September 2026</span></p>
           </div>
 
-          <div class="ev-panel" id="ev-panel-2" role="tabpanel" aria-labelledby="ev-tab-2" tabindex="0" hidden>
-            <h4 class="ev-panel-h">And they are growing at a different rate.</h4>
+          <div class="ev2-panel" id="ev-panel-3" role="tabpanel" aria-labelledby="ev-tab-3" tabindex="0">
+            <h3 class="ev2-panel-h">And they are growing at a different rate.</h3>
             <div class="ev-unit">Compound annual growth, 2020 to 2025</div>
             <div class="ev-bars" aria-hidden="true">
               <div class="ev-bar-col">
@@ -293,34 +312,40 @@
             <p class="ev-caveat">ACH moved $93 trillion in 2025, from a far larger base. <span class="src">Nacha and Visa Onchain Analytics, via BlackRock, September 2026</span></p>
           </div>
 
-          <div class="ev-panel" id="ev-panel-3" role="tabpanel" aria-labelledby="ev-tab-3" tabindex="0" hidden>
-            <h4 class="ev-panel-h">Agent-driven settlement is measurable, and still a fraction of that flow.</h4>
+          <div class="ev2-panel" id="ev-panel-4" role="tabpanel" aria-labelledby="ev-tab-4" tabindex="0">
+            <h3 class="ev2-panel-h">What follows if it scales.</h3>
             <div class="ev-figs">
               <div class="ev-fig-item">
-                <div class="ev-fig-num">~176m</div>
-                <div class="ev-fig-label">On-chain agent transactions</div>
+                <div class="ev-fig-num">15–25%</div>
+                <div class="ev-fig-label">Of US e-commerce handled by AI agents by 2030</div>
               </div>
               <div class="ev-fig-item">
-                <div class="ev-fig-num">~$73m</div>
-                <div class="ev-fig-label">Value settled</div>
+                <div class="ev-fig-num">$4.8tn+</div>
+                <div class="ev-fig-label">Addressable capital over five years</div>
               </div>
               <div class="ev-fig-item">
-                <div class="ev-fig-num">1–10c</div>
-                <div class="ev-fig-label">Typical transaction</div>
+                <div class="ev-fig-num">~200 bps</div>
+                <div class="ev-fig-label">A year on a $500 million treasury, from continuous intraday allocation</div>
               </div>
             </div>
             <table class="sr-only">
-              <caption>Agent settlement today</caption>
+              <caption>The opportunity: forecast and modelled figures</caption>
               <thead><tr><th scope="col">Metric</th><th scope="col">Value</th></tr></thead>
               <tbody>
-                <tr><td>On-chain agent transactions</td><td>~176m</td></tr>
-                <tr><td>Value settled</td><td>~$73m</td></tr>
-                <tr><td>Typical transaction</td><td>1–10c</td></tr>
+                <tr><td>Of US e-commerce handled by AI agents by 2030</td><td>15–25%</td></tr>
+                <tr><td>Addressable capital over five years</td><td>$4.8tn+</td></tr>
+                <tr><td>A year on a $500 million treasury, from continuous intraday allocation</td><td>~200 bps</td></tr>
               </tbody>
             </table>
-            <p class="ev-caveat">Twelve months to April 2026. The count supports this report's argument; the dollar volume does not yet. <span class="src">Keyrock, via Hashed Emergent</span></p>
+            <p class="ev-caveat">The first is a forecast; the others are model outputs. <span class="src">Bain &amp; Company · Modelled by APEX:E3, not measured</span></p>
           </div>
         </div>
+      </div>
+
+      <div class="ev2-close">
+        <p class="ev2-close-line">Weeks to deploy, months to govern.</p>
+        <p class="ev2-close-sub">Start with idle cash, where the mandate fits on a page.</p>
+        <p class="ev2-close-note">BlackRock is not a participant in this report and has not reviewed or endorsed it.</p>
       </div>
     </div>
   </section>
