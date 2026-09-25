@@ -134,7 +134,9 @@ for _page in ("press.html", "imprint.html", "privacy.html"):
 # ---------------------------------------------------------------- discovery files and headers
 llms = f"""# Agentic Finance Report
 
-> Industry report, edition 1.0 (2026). Autonomous AI agents that decide and act inside mandates written by people are beginning to manage, move and settle institutional capital on blockchain rails. The report sets out what has to be true before the machine acts: a regulated custodian, final and cheap settlement, visible reasoning, attributable decisions and verifiable agent identity.
+Mapping the road for institutional capital managed by AI agents.
+
+> Capital managed continuously rather than periodically, by software acting inside mandates that people write and can withdraw, on rails that settle at machine speed. The report sets out what has to be true before the machine acts: a regulated custodian, final and cheap settlement, visible reasoning, attributable decisions and verifiable agent identity.
 
 Lead author: Marcus Maute, TensorX Swiss Representative (https://www.marcusmaute.com)
 Co-authors: TensorX, AMINA Bank, Solana Foundation, APEX:E3, Cardano Foundation
