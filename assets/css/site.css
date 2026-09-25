@@ -173,6 +173,7 @@ html, body { overflow-x: clip; }
 .gc .logo-row { height: 30px; display: flex; align-items: center; gap: 14px; }
 .gc .logo-row img { height: 100%; width: auto; }
 .gc .logo-row img.bs { height: 21px; }
+.gc .logo-row img.cvvc { height: 28px; }
 .gc .logo-row .x { font-family: var(--display); font-size: 18px; color: var(--muted); }
 .gc .logo-row .gleif { font-family: var(--display); font-weight: 600; font-size: 19px; color: var(--ink); letter-spacing: 0.02em; }
 .gc p { font-size: 15px; line-height: 1.5; color: var(--body); margin: 0; flex: 1; }

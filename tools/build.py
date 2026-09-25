@@ -15,6 +15,7 @@ import pathlib
 import hashlib
 import re
 import shutil
+import subprocess
 import sys
 
 PRELAUNCH = True
@@ -30,7 +31,7 @@ CONFIG = {
     "DATE_ISO": "2026-09-29",
     "PDF": "agentic-finance-report-v1.pdf",
 }
-REPORT_RC = "RC21"   # the release the site is built from; swap for the final release at launch
+REPORT_RC = "RC24"   # the release the site is built from; swap for the final release at launch
 REPORT_PDF = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.pdf"
 REPORT_FULL_MD = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.full.md"
 REPORT_SUMMARY_MD = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.summary.md"
@@ -44,12 +45,28 @@ REPORT_FILES = [CONFIG["PDF"], "agentic-finance-report.md", "agentic-finance.sum
 for f in (REPORT_PDF, REPORT_FULL_MD, REPORT_SUMMARY_MD):
     if not (repo / f).exists():
         sys.exit(f"missing {f}")
-if (repo / "Agentic_Finance_Report.pdf").read_bytes() != (repo / REPORT_PDF).read_bytes():
-    sys.exit(f"Agentic_Finance_Report.pdf in the report repo is not {REPORT_RC}: the disclaimer would come from a "
-             "different version. Update REPORT_RC or check out the matching report.")
+RC_TAG = f"v1.0-{REPORT_RC.lower()}"
+release_pdf_bytes = (repo / REPORT_PDF).read_bytes()
+if (repo / "Agentic_Finance_Report.pdf").read_bytes() == release_pdf_bytes:
+    # working tree is checked out exactly at this RC: read the master straight off disk
+    h = (repo / "Agentic_Finance_Report.html").read_text(encoding="utf-8")
+else:
+    # the report repo has moved past this RC (normal mid-development: edits toward the next release sit
+    # uncommitted or past the tag). Don't let the disclaimer silently drift with them: pull the exact
+    # tagged snapshot from git instead, so it can only ever come from REPORT_RC.
+    try:
+        tagged_pdf = subprocess.run(["git", "show", f"{RC_TAG}:Agentic_Finance_Report.pdf"], cwd=repo,
+                                     capture_output=True, check=True).stdout
+    except subprocess.CalledProcessError:
+        sys.exit(f"Agentic_Finance_Report.pdf in the report repo is not {REPORT_RC}, and git tag {RC_TAG} "
+                  "was not found either. Update REPORT_RC or check out the matching report.")
+    if tagged_pdf != release_pdf_bytes:
+        sys.exit(f"git tag {RC_TAG}'s Agentic_Finance_Report.pdf does not match {REPORT_PDF} either: "
+                  "the tag and the release/ file have diverged. Update REPORT_RC or re-check the release.")
+    h = subprocess.run(["git", "show", f"{RC_TAG}:Agentic_Finance_Report.html"], cwd=repo,
+                        capture_output=True, check=True).stdout.decode("utf-8")
 
 # ---------------------------------------------------------------- disclaimer (verbatim from the report)
-h = (repo / "Agentic_Finance_Report.html").read_text(encoding="utf-8")
 i = h.index("— AMINA Bank · Disclaimer</div>")
 j = h.index("</section>", i)
 paras = re.findall(r'<p style="margin-bottom:[^"]*">(.*?)</p>', h[i:j], re.S)
@@ -100,7 +117,7 @@ llms = f"""# Agentic Finance Report
 
 Lead author: Marcus Maute, TensorX Swiss Representative (https://www.marcusmaute.com)
 Co-authors: TensorX, AMINA Bank, Solana Foundation, APEX:E3, Cardano Foundation
-Guest contribution: Blindsight
+Guest contributions: Blindsight, CV VC
 Foreword: Tim Grant, Executive Chairman, TensorX
 Launch: CV Summit 2026, Kongresshaus Zurich, {CONFIG["DATE"]} (https://www.cvsummit.ch), organised by CV Labs
 Co-publishing partner: CV VC AG, Zug (https://www.cvvc.com)
@@ -112,8 +129,8 @@ Contact: research@agenticfinancereport.com
 if PRELAUNCH:
     llms += f"- The full report (PDF) and its Markdown editions will be published at {SITE}/ on {CONFIG['DATE']}.\n"
 else:
-    llms += (f"- [Full report (PDF)]({SITE}/{CONFIG['PDF']}): 56 pages, including sources and the co-authors' disclaimer\n"
-             f"- [Full report (Markdown)]({SITE}/agentic-finance-report.md): every chapter, the guest contribution, every source and the disclaimer, with printed page markers\n"
+    llms += (f"- [Full report (PDF)]({SITE}/{CONFIG['PDF']}): 60 pages (59 numbered), including sources and the co-authors' disclaimer\n"
+             f"- [Full report (Markdown)]({SITE}/agentic-finance-report.md): every chapter, both guest contributions, every source and the disclaimer, with printed page markers\n"
              f"- [Machine-readable summary (Markdown)]({SITE}/agentic-finance.summary.md)\n")
 llms += f"""
 ## First agent built on the report's principles
@@ -128,6 +145,7 @@ llms += f"""
 - [APEX:E3](https://apexe3.com): enterprise AI infrastructure for capital markets, operator of ALICE
 - [Cardano Foundation](https://cardanofoundation.org): verifiable organisational identity for autonomous agents
 - [Blindsight](https://blindsight.io) (guest contribution): runtime protection for AI agents against prompt injection and data poisoning
+- [CV VC](https://cvvc.com) (guest contribution; also the report's co-publishing partner): early-stage investor in digital assets and AI
 
 ## Notes
 

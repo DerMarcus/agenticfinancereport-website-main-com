@@ -4,7 +4,7 @@
 
 Lead author: Marcus Maute, TensorX Swiss Representative (https://www.marcusmaute.com)
 Co-authors: TensorX, AMINA Bank, Solana Foundation, APEX:E3, Cardano Foundation
-Guest contribution: Blindsight
+Guest contributions: Blindsight, CV VC
 Foreword: Tim Grant, Executive Chairman, TensorX
 Launch: CV Summit 2026, Kongresshaus Zurich, 29–30 September 2026 (https://www.cvsummit.ch), organised by CV Labs
 Co-publishing partner: CV VC AG, Zug (https://www.cvvc.com)
@@ -26,6 +26,7 @@ Contact: research@agenticfinancereport.com
 - [APEX:E3](https://apexe3.com): enterprise AI infrastructure for capital markets, operator of ALICE
 - [Cardano Foundation](https://cardanofoundation.org): verifiable organisational identity for autonomous agents
 - [Blindsight](https://blindsight.io) (guest contribution): runtime protection for AI agents against prompt injection and data poisoning
+- [CV VC](https://cvvc.com) (guest contribution; also the report's co-publishing partner): early-stage investor in digital assets and AI
 
 ## Notes
 
