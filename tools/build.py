@@ -163,7 +163,10 @@ headers = """/*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: interest-cohort=()
-""" + ("  X-Robots-Tag: noindex, nofollow\n" if PRELAUNCH else "") + f"""
+""" + ("  X-Robots-Tag: noindex, nofollow\n" if PRELAUNCH else "") + """
+/press*
+  X-Robots-Tag: noindex
+""" + f"""
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 

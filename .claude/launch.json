@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "afr-site", "runtimeExecutable": "sh", "runtimeArgs": ["-c", "cd /tmp/afr-site && exec python3 -m http.server 8794"], "port": 8794 }
+  ]
+}
