@@ -443,6 +443,10 @@ html, body { overflow-x: clip; }
 .pr-actions .copy { margin-top: 0; height: 48px; }
 .pr-actions .link-dark { color: var(--blue-deep); height: auto; border-bottom: 1px solid rgba(30,68,199,0.35); }
 .pr-actions .link-dark:hover { color: var(--ink); }
+.pr-pdf { margin: -8px 0 40px; }
+.pr-pdf .link-dark { color: var(--blue-deep); height: auto; border-bottom: 1px solid rgba(30,68,199,0.35); }
+.pr-pdf .link-dark:hover { color: var(--ink); }
+.pr-pdf-note { font-size: 14px; line-height: 1.6; color: var(--muted); margin: 10px 0 0; }
 .pr-body p { font-size: 16px; line-height: 1.7; color: var(--body); margin: 0 0 20px; }
 .pr-body strong { color: var(--ink); font-weight: 600; }
 .pr-orgs { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 14px; border-left: 2px solid rgba(23,19,31,0.12); }

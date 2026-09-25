@@ -3,6 +3,5 @@ __pycache__/
 # internal working notes stay local (public repo)
 CLAUDE.md
 # held back until launch (tools/build.py PRELAUNCH)
-agentic-finance-report-v1.pdf
 agentic-finance-report.md
 agentic-finance.summary.md

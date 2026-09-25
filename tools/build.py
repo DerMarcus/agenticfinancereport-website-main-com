@@ -5,8 +5,10 @@
 
 PRELAUNCH = True  (until the report launches): the page is public but the report is held back.
   Download buttons read "Available ...", the Agent view shows a notice instead of the Markdown, the page is
-  noindex, and the PDF / Markdown files are removed from this folder and git-ignored so they cannot be pushed.
-PRELAUNCH = False (launch day): the RC PDF and both Markdown files are copied in, embedded and linked.
+  noindex, and the Markdown files are removed from this folder and git-ignored so they cannot be pushed.
+PRELAUNCH = False (launch day): both Markdown files are copied in, embedded and linked, and the download
+  buttons point at REPORT_PDF_PATH (a same-domain redirect to the S3-hosted PDF; see _redirects, below).
+  The PDF itself is never copied into this repo: download traffic goes straight to AWS, not Cloudflare.
 
 The disclaimer is inserted verbatim from the report master (AMINA's page, printed 021), so the website can never
 drift from the PDF's legal text.
@@ -24,12 +26,18 @@ PRELAUNCH = True
 # non-endorsement note. FT's permission to use its logo is still open: set False to remove the whole block.
 SHOW_FT = True
 
+# The PDF is served straight from AWS, not from Cloudflare: this path is a same-domain redirect (see
+# _redirects, below) to the S3 object, so download traffic never touches Cloudflare Pages. Both are
+# single constants so the target can be changed in one place.
+REPORT_PDF_PATH = "/report.pdf"
+REPORT_PDF_S3_URL = "https://agenticfinanceindustryreport.s3.us-east-1.amazonaws.com/Agentic_Finance_Report.pdf"
+
 CONFIG = {
     "VENUE": "CV Summit, Zurich",         # confirmed 17 Sep 2026 (cvsummit.ch: Kongresshaus Zurich)
     "DATE": "29–30 September 2026",
     "DATE_SHORT": "29 September",
     "DATE_ISO": "2026-09-29",
-    "PDF": "agentic-finance-report-v1.pdf",
+    "PDF": REPORT_PDF_PATH,
 }
 REPORT_RC = "RC25"   # the release the site is built from; swap for the final release at launch
 REPORT_PDF = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.pdf"
@@ -39,7 +47,9 @@ REPORT_SUMMARY_MD = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.summary.md
 SITE = "https://www.agenticfinancereport.com"
 root = pathlib.Path(__file__).resolve().parent.parent
 repo = root.parent.parent
-REPORT_FILES = [CONFIG["PDF"], "agentic-finance-report.md", "agentic-finance.summary.md"]
+# The PDF itself is never copied into this repo (see REPORT_PDF_PATH above) — only the two Markdown
+# editions are materialised locally.
+REPORT_FILES = ["agentic-finance-report.md", "agentic-finance.summary.md"]
 
 # ---------------------------------------------------------------- the master must be the release we ship
 for f in (REPORT_PDF, REPORT_FULL_MD, REPORT_SUMMARY_MD):
@@ -89,7 +99,6 @@ if PRELAUNCH:
     for f in REPORT_FILES:
         (root / f).unlink(missing_ok=True)
 else:
-    shutil.copyfile(repo / REPORT_PDF, root / CONFIG["PDF"])
     full_md = (repo / REPORT_FULL_MD).read_text(encoding="utf-8")
     (root / "agentic-finance-report.md").write_text(full_md, encoding="utf-8")
     shutil.copyfile(repo / REPORT_SUMMARY_MD, root / "agentic-finance.summary.md")
@@ -129,7 +138,7 @@ Contact: research@agenticfinancereport.com
 if PRELAUNCH:
     llms += f"- The full report (PDF) and its Markdown editions will be published at {SITE}/ on {CONFIG['DATE']}.\n"
 else:
-    llms += (f"- [Full report (PDF)]({SITE}/{CONFIG['PDF']}): 60 pages (59 numbered), including sources and the co-authors' disclaimer\n"
+    llms += (f"- [Full report (PDF)]({SITE}{CONFIG['PDF']}): 60 pages (59 numbered), including sources and the co-authors' disclaimer\n"
              f"- [Full report (Markdown)]({SITE}/agentic-finance-report.md): every chapter, both guest contributions, every source and the disclaimer, with printed page markers\n"
              f"- [Machine-readable summary (Markdown)]({SITE}/agentic-finance.summary.md)\n")
 llms += f"""
@@ -154,7 +163,9 @@ llms += f"""
 """
 (root / "llms.txt").write_text(llms, encoding="utf-8")
 
-urls = [f"{SITE}/", f"{SITE}/imprint", f"{SITE}/privacy"] + ([] if PRELAUNCH else [f"{SITE}/{f}" for f in REPORT_FILES])
+urls = [f"{SITE}/", f"{SITE}/imprint", f"{SITE}/privacy"] + (
+    [] if PRELAUNCH else [f"{SITE}{CONFIG['PDF']}"] + [f"{SITE}/{f}" for f in REPORT_FILES]
+)
 (root / "sitemap.xml").write_text(
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n", encoding="utf-8")
@@ -176,13 +187,13 @@ headers = """/*
 
 /llms.txt
   Content-Type: text/plain; charset=utf-8
-
-/{CONFIG["PDF"]}
-  Content-Type: application/pdf
-  Content-Disposition: inline; filename="Agentic_Finance_Report_v1.0.pdf"
-  Cache-Control: public, max-age=3600
 """
 (root / "_headers").write_text(headers, encoding="utf-8")
+
+# The PDF itself is never served from this domain: /report.pdf 302s straight to the S3 object (see
+# REPORT_PDF_PATH / REPORT_PDF_S3_URL, above), so download traffic goes to AWS, not Cloudflare.
+# Regenerated on every build so it survives a rebuild.
+(root / "_redirects").write_text(f"{REPORT_PDF_PATH}  {REPORT_PDF_S3_URL}  302\n", encoding="utf-8")
 
 # keep the report out of git while it is held back
 gi = [".DS_Store", "__pycache__/", "# internal working notes stay local (public repo)", "CLAUDE.md"] + (["# held back until launch (tools/build.py PRELAUNCH)"] + REPORT_FILES if PRELAUNCH else [])
