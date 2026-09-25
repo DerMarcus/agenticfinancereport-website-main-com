@@ -439,11 +439,11 @@ html, body { overflow-x: clip; }
 .pr-kicker { color: var(--blue-deep); margin-top: 18px; }
 .pr-headline { font-family: var(--display); font-weight: 500; font-size: clamp(26px, 3.6vw, 38px); line-height: 1.16; letter-spacing: -0.025em; color: var(--ink); margin: 14px 0 0; }
 .pr-standfirst { font-size: 18px; line-height: 1.6; color: var(--ink); font-weight: 500; margin: 22px 0 0; }
-.pr-actions { display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; margin: 32px 0 40px; padding: 24px 0; border-top: 1px solid rgba(23,19,31,0.12); border-bottom: 1px solid rgba(23,19,31,0.12); }
+.pr-actions { display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; margin: 32px 0 0; padding: 24px 0 18px; border-top: 1px solid rgba(23,19,31,0.12); }
 .pr-actions .copy { margin-top: 0; height: 48px; }
 .pr-actions .link-dark { color: var(--blue-deep); height: auto; border-bottom: 1px solid rgba(30,68,199,0.35); }
 .pr-actions .link-dark:hover { color: var(--ink); }
-.pr-pdf { margin: -8px 0 40px; }
+.pr-pdf { margin: 0 0 40px; padding: 0 0 24px; border-bottom: 1px solid rgba(23,19,31,0.12); }
 .pr-pdf .link-dark { color: var(--blue-deep); height: auto; border-bottom: 1px solid rgba(30,68,199,0.35); }
 .pr-pdf .link-dark:hover { color: var(--ink); }
 .pr-pdf-note { font-size: 14px; line-height: 1.6; color: var(--muted); margin: 10px 0 0; }
