@@ -119,6 +119,18 @@ for _asset in ("assets/css/site.css", "assets/js/site.js"):
 
 (root / "index.html").write_text(out, encoding="utf-8")
 
+# Same cache-bust for the hand-written pages (press, imprint, privacy): /assets is immutable for a
+# year, so without a stamped URL a returning visitor keeps the old CSS after a deploy.
+for _page in ("press.html", "imprint.html", "privacy.html"):
+    _p = root / _page
+    if not _p.exists():
+        continue
+    _html = _p.read_text(encoding="utf-8")
+    for _asset in ("assets/css/site.css", "assets/js/site.js"):
+        _digest = hashlib.md5((root / _asset).read_bytes()).hexdigest()[:8]
+        _html = re.sub(rf'{re.escape(_asset)}(\?v=[0-9a-f]+)?', f"{_asset}?v={_digest}", _html)
+    _p.write_text(_html, encoding="utf-8")
+
 # ---------------------------------------------------------------- discovery files and headers
 llms = f"""# Agentic Finance Report
 
