@@ -43,7 +43,10 @@ a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 
 .page { min-height: 100vh; overflow-x: clip; }
 html, body { overflow-x: clip; }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+/* Off-canvas to the left: width:1px does not constrain a <table>, and an absolutely positioned
+   element overflowing to the right still extends the document scroll width (the evidence panels'
+   screen-reader tables did, by ~260px on a phone). Overflow to the left never does. */
+.sr-only { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; padding: 0; margin: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 /* ---------- shared type ---------- */
 .label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; }
