@@ -360,6 +360,7 @@ html, body { overflow-x: clip; }
 .ev2-left .h2 { color: var(--ink-dark); font-size: clamp(26px, 3vw, 32px); max-width: none; margin: 0; }
 .ev2-lead { font-size: 15px; line-height: 1.62; color: rgba(244,240,232,0.78); margin: 18px 0 0; max-width: 34em; }
 .ev2-lead em { font-style: italic; }
+.ev2-note { font-size: 13px; line-height: 1.5; color: rgba(244,240,232,0.55); margin: 14px 0 0; max-width: 34em; }
 
 .ev2-tabs { display: flex; flex-direction: column; margin-top: 36px; border-top: 1px solid rgba(244,240,232,0.14); }
 .ev2-tab { appearance: none; -webkit-appearance: none; display: flex; flex-direction: column; align-items: flex-start; width: 100%; border: 0; border-bottom: 1px solid rgba(244,240,232,0.14); background: transparent; cursor: pointer; text-align: left; padding: 18px 0; color: rgba(244,240,232,0.55); }
@@ -377,10 +378,9 @@ html, body { overflow-x: clip; }
 .ev2-panel-h { font-family: var(--display); font-weight: 500; font-size: clamp(19px, 2.2vw, 24px); line-height: 1.3; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 10px; max-width: 30em; }
 .ev-unit { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 
-.ev2-close { margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(23,19,31,0.1); }
-.ev2-close-line { font-family: var(--display); font-weight: 500; font-size: clamp(22px, 2.8vw, 30px); line-height: 1.2; letter-spacing: -0.025em; color: var(--ink); margin: 0; }
-.ev2-close-sub { font-size: 16px; line-height: 1.55; color: var(--body); margin: 12px 0 0; }
-.ev2-close-note { font-size: 13px; line-height: 1.5; color: var(--muted); margin: 18px 0 0; }
+.ev2-take { margin-top: 32px; padding-top: 28px; border-top: 1px solid rgba(244,240,232,0.14); }
+.ev2-take-line { font-family: var(--display); font-weight: 500; font-size: 19px; line-height: 1.3; letter-spacing: -0.015em; color: var(--ink-dark); margin: 0; }
+.ev2-take-sub { font-size: 14.5px; line-height: 1.55; color: rgba(244,240,232,0.72); margin: 8px 0 0; }
 
 @media (min-width: 1024px) {
   .ev2 { display: grid; grid-template-columns: 420px minmax(0, 1fr); }
@@ -422,7 +422,6 @@ html, body { overflow-x: clip; }
   .ev-value { font-size: 15px; }
 }
 @media (max-width: 480px) {
-  .ev2-close { margin-top: 36px; padding-top: 24px; }
   .ev-bars { gap: 12px; }
   .ev-bar-track { height: 150px; }
   .ev-fig-item { flex-basis: 100%; }
