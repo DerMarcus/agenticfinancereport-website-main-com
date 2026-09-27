@@ -174,6 +174,11 @@ html, body { overflow-x: clip; }
 .toc .chip { justify-self: start; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); border: 1px solid rgba(23,19,31,0.3); padding: 5px 8px; }
 .toc .title { font-family: var(--display); font-size: 21px; letter-spacing: -0.02em; color: var(--ink); }
 .toc .by { font-size: 15px; color: var(--muted); }
+.chapters-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin: 40px 0 0; }
+.chapters-cta .cta-link { display: inline-flex; align-items: center; height: 56px; color: var(--blue-deep); font-size: 16px; }
+.chapters-cta .cta-link:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.chapters-cta .cta-note { font-size: 14px; line-height: 1.5; color: var(--muted); }
+.chapters-cta .btn.soon, .chapters-cta .btn.soon:hover { background: rgba(23,19,31,0.04); color: var(--ink); border: 1px solid rgba(23,19,31,0.2); }
 @media (max-width: 640px) {
   .toc li { grid-template-columns: 72px minmax(0, 1fr); gap: 6px 16px; }
   .toc .by { grid-column: 2; }
@@ -424,6 +429,12 @@ html, body { overflow-x: clip; }
 
 @media (max-width: 640px) {
   .ev2-left, .ev2-right { padding: 32px 24px; }
+  /* below 640px the wrapped horizontal row breaks unevenly; go back to a full-width vertical
+     list, like the >=1024px treatment but slim (13px vertical padding keeps rows >=44px tall). */
+  .ev2-tabs { flex-direction: column; flex-wrap: nowrap; border-top: 1px solid rgba(244,240,232,0.14); gap: 0; }
+  .ev2-tab { width: 100%; flex: 0 0 auto; border-bottom: 1px solid rgba(244,240,232,0.14); padding: 13px 0; min-height: 44px; box-sizing: border-box; }
+  .ev2-tab[aria-selected="true"] { border-bottom-color: rgba(244,240,232,0.14); }
+  .ev2-tab-desc, .ev2-tab-bar { max-width: none; }
 }
 
 .ev-bars { display: flex; align-items: flex-end; gap: 32px; margin: 28px 0 0; }
