@@ -3,12 +3,24 @@
 
     python3 tools/build.py
 
-PRELAUNCH = True  (until the report launches): the page is public but the report is held back.
-  Download buttons read "Available ...", the Agent view shows a notice instead of the Markdown, the page is
-  noindex, and the Markdown files are removed from this folder and git-ignored so they cannot be pushed.
-PRELAUNCH = False (launch day): both Markdown files are copied in, embedded and linked, and the download
-  buttons point at REPORT_PDF_PATH (a same-domain redirect to the S3-hosted PDF; see _redirects, below).
-  The PDF itself is never copied into this repo: download traffic goes straight to AWS, not Cloudflare.
+Three build states, chosen by PRELAUNCH and (while PRELAUNCH is True) MD_EARLY:
+
+PRELAUNCH = True,  MD_EARLY = False  ("P", full hold-back): the page is public but the whole report is held
+  back. Download buttons read "Available ...", the Agent view shows a notice instead of the Markdown, the page
+  is noindex, and both Markdown files are removed from this folder and git-ignored so they cannot be pushed.
+PRELAUNCH = True,  MD_EARLY = True   ("M", Markdown early): the PDF stays held back (same disabled PDF buttons
+  as "P"), but both Markdown editions are public now so partners can verify them: "Get the MD file"/"Get the
+  .md" work, the Agent view shows the real report, and the two .md files are copied into this folder, embedded
+  and committable (not git-ignored). The page stays noindex until launch, same as "P". The Agent view carries
+  one extra line saying this is a pre-release verification copy and the final edition publishes on the launch
+  date.
+PRELAUNCH = False ("L", launch day): both Markdown files and the PDF are all public. Download buttons point at
+  REPORT_PDF_PATH (a same-domain redirect to the S3-hosted PDF; see _redirects, below); the PDF itself is never
+  copied into this repo, in any state: download traffic goes straight to AWS, not Cloudflare.
+
+The template marks each state's variant of a block with a comment pair: <!--P-->...<!--/P-->,
+<!--M-->...<!--/M--> or <!--L-->...<!--/L-->. The build keeps exactly one letter's blocks (unwrapping the
+markers) and strips the other two (markers and content) in full.
 
 The disclaimer is inserted verbatim from the report master (AMINA's page, printed 021), so the website can never
 drift from the PDF's legal text.
@@ -21,6 +33,10 @@ import subprocess
 import sys
 
 PRELAUNCH = True
+
+# Only meaningful while PRELAUNCH is True: publish both Markdown editions now, while the PDF stays held back
+# until launch. See the module docstring, state "M". Ignored once PRELAUNCH is False.
+MD_EARLY = True
 
 # Franklin Templeton appears only as CV Summit's presenting partner, inside the CV Summit section, with the
 # non-endorsement note. FT's permission to use its logo is still open: set False to remove the whole block.
@@ -39,7 +55,7 @@ CONFIG = {
     "DATE_ISO": "2026-09-29",
     "PDF": REPORT_PDF_PATH,
 }
-REPORT_RC = "RC29"   # the release the site is built from; swap for the final release at launch
+REPORT_RC = "RC30"   # the release the site is built from; swap for the final release at launch
 REPORT_PDF = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.pdf"
 REPORT_FULL_MD = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.full.md"
 REPORT_SUMMARY_MD = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.summary.md"
@@ -85,17 +101,25 @@ if len(paras) < 10:
 disclaimer = "\n".join("          <p>%s</p>" % p.strip() for p in paras)
 
 # ---------------------------------------------------------------- template blocks
+# Three states, one letter kept: "L" once launched, otherwise "M" while the Markdown is published early,
+# otherwise "P" (full hold-back). MD_EARLY only matters while PRELAUNCH is True.
+STATE = "L" if not PRELAUNCH else ("M" if MD_EARLY else "P")
 tpl = (root / "index.template.html").read_text(encoding="utf-8")
-keep, drop = ("P", "L") if PRELAUNCH else ("L", "P")
-out = re.sub(r"<!--%s-->.*?<!--/%s-->\n?" % (drop, drop), "", tpl, flags=re.S)
-out = out.replace("<!--%s-->" % keep, "").replace("<!--/%s-->" % keep, "")
+out = tpl
+for _drop in ("L", "M", "P"):
+    if _drop == STATE:
+        continue
+    out = re.sub(r"<!--%s-->.*?<!--/%s-->\n?" % (_drop, _drop), "", out, flags=re.S)
+out = out.replace("<!--%s-->" % STATE, "").replace("<!--/%s-->" % STATE, "")
 if SHOW_FT:
     out = out.replace("<!--FT-->", "").replace("<!--/FT-->", "")
 else:
     out = re.sub(r"<!--FT-->.*?<!--/FT-->", "", out, flags=re.S)
 
 out = out.replace("{{DISCLAIMER}}", disclaimer)
-if PRELAUNCH:
+# Both "L" (launch) and "M" (Markdown published early) materialise the two Markdown editions in this
+# folder and embed the full report for the Agent view; only "P" (full hold-back) removes them.
+if STATE == "P":
     for f in REPORT_FILES:
         (root / f).unlink(missing_ok=True)
 else:
@@ -149,8 +173,12 @@ Contact: research@agenticfinancereport.com
 ## Report
 
 """
-if PRELAUNCH:
+if STATE == "P":
     llms += f"- The full report (PDF) and its Markdown editions will be published at {SITE}/ on {CONFIG['DATE']}.\n"
+elif STATE == "M":
+    llms += (f"- [Full report (Markdown)]({SITE}/agentic-finance-report.md): every chapter, both guest contributions, every source and the disclaimer, with printed page markers. Available now, ahead of the PDF.\n"
+             f"- [Machine-readable summary (Markdown)]({SITE}/agentic-finance.summary.md): available now.\n"
+             f"- The full report (PDF) will be published at {SITE}{CONFIG['PDF']} on {CONFIG['DATE_SHORT']} 2026.\n")
 else:
     llms += (f"- [Full report (PDF)]({SITE}{CONFIG['PDF']}): 60 pages (59 numbered), including sources and the co-authors' disclaimer\n"
              f"- [Full report (Markdown)]({SITE}/agentic-finance-report.md): every chapter, both guest contributions, every source and the disclaimer, with printed page markers\n"
@@ -177,9 +205,13 @@ llms += f"""
 """
 (root / "llms.txt").write_text(llms, encoding="utf-8")
 
-urls = [f"{SITE}/", f"{SITE}/imprint", f"{SITE}/privacy"] + (
-    [] if PRELAUNCH else [f"{SITE}{CONFIG['PDF']}"] + [f"{SITE}/{f}" for f in REPORT_FILES]
-)
+if STATE == "P":
+    _report_urls = []
+elif STATE == "M":
+    _report_urls = [f"{SITE}/{f}" for f in REPORT_FILES]   # Markdown only; the PDF is still held back
+else:
+    _report_urls = [f"{SITE}{CONFIG['PDF']}"] + [f"{SITE}/{f}" for f in REPORT_FILES]
+urls = [f"{SITE}/", f"{SITE}/imprint", f"{SITE}/privacy"] + _report_urls
 (root / "sitemap.xml").write_text(
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n", encoding="utf-8")
@@ -209,9 +241,16 @@ headers = """/*
 # Regenerated on every build so it survives a rebuild.
 (root / "_redirects").write_text(f"{REPORT_PDF_PATH}  {REPORT_PDF_S3_URL}  302\n", encoding="utf-8")
 
-# keep the report out of git while it is held back
-gi = [".DS_Store", "__pycache__/", "# internal working notes stay local (public repo)", "CLAUDE.md"] + (["# held back until launch (tools/build.py PRELAUNCH)"] + REPORT_FILES if PRELAUNCH else [])
+# Keep the Markdown out of git only in the full hold-back state ("P"): once MD_EARLY publishes it ("M"), or
+# at launch ("L"), the two files must be committable, since Cloudflare Pages serves them from the repo.
+gi = [".DS_Store", "__pycache__/", "# internal working notes stay local (public repo)", "CLAUDE.md"] + (
+    ["# held back until MD_EARLY or launch (tools/build.py PRELAUNCH)"] + REPORT_FILES if STATE == "P" else []
+)
 (root / ".gitignore").write_text("\n".join(gi) + "\n", encoding="utf-8")
 
-print(f"index.html written ({'PRE-LAUNCH: report held back' if PRELAUNCH else 'LAUNCH: report published'}; "
-      f"{len(paras)} disclaimer paragraphs)")
+_state_desc = {
+    "P": "PRE-LAUNCH: report fully held back",
+    "M": "PRE-LAUNCH: Markdown published early, PDF held back",
+    "L": "LAUNCH: report published",
+}[STATE]
+print(f"index.html written ({_state_desc}; {len(paras)} disclaimer paragraphs)")

@@ -10,6 +10,9 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <!--L--><link rel="alternate" type="text/markdown" href="agentic-finance-report.md" title="Full report in Markdown">
 <link rel="alternate" type="text/markdown" href="agentic-finance.summary.md" title="Machine-readable summary"><!--/L-->
+<!--M--><link rel="alternate" type="text/markdown" href="agentic-finance-report.md" title="Full report in Markdown">
+<link rel="alternate" type="text/markdown" href="agentic-finance.summary.md" title="Machine-readable summary">
+<meta name="robots" content="noindex, nofollow"><!--/M-->
 <!--P--><meta name="robots" content="noindex, nofollow"><!--/P-->
 
 <meta property="og:type" content="website">
@@ -43,7 +46,12 @@
     { "@type": "MediaObject", "contentUrl": "https://www.agenticfinancereport.com/agentic-finance-report.md", "encodingFormat": "text/markdown", "name": "Full report in Markdown" },
     { "@type": "MediaObject", "contentUrl": "https://www.agenticfinancereport.com/agentic-finance.summary.md", "encodingFormat": "text/markdown", "name": "Summary in Markdown" }
   ],
-<!--/L-->  "author": { "@type": "Person", "name": "Marcus Maute", "jobTitle": "TensorX Swiss Representative", "url": "https://www.marcusmaute.com" },
+<!--/L-->
+<!--M-->  "encoding": [
+    { "@type": "MediaObject", "contentUrl": "https://www.agenticfinancereport.com/agentic-finance-report.md", "encodingFormat": "text/markdown", "name": "Full report in Markdown" },
+    { "@type": "MediaObject", "contentUrl": "https://www.agenticfinancereport.com/agentic-finance.summary.md", "encodingFormat": "text/markdown", "name": "Summary in Markdown" }
+  ],
+<!--/M-->  "author": { "@type": "Person", "name": "Marcus Maute", "jobTitle": "TensorX Swiss Representative", "url": "https://www.marcusmaute.com" },
   "contributor": [
     { "@type": "Organization", "name": "TensorX", "url": "https://tensorx.ai" },
     { "@type": "Organization", "name": "AMINA Bank", "url": "https://aminagroup.com" },
@@ -78,6 +86,7 @@
       </div>
       <nav aria-label="Primary">
 <!--L-->        <a class="header-cta" data-cta href="{{PDF}}" data-human-href="{{PDF}}" data-agent-href="agentic-finance-report.md" data-human-label="Download PDF" data-agent-label="Download .md">Download PDF</a><!--/L-->
+<!--M-->        <a class="header-cta" data-cta href="agentic-finance-report.md" data-human-href="agentic-finance-report.md" data-agent-href="agentic-finance-report.md" data-human-label="Get the .md" data-agent-label="Download .md">Get the .md</a><!--/M-->
 <!--P-->        <span class="header-cta soon" data-cta data-human-label="Available 29 Sept" data-agent-label="Markdown 29 Sept">Available 29 Sept</span><!--/P-->
       </nav>
     </div>
@@ -95,6 +104,8 @@
           <div class="actions">
 <!--L-->            <a class="btn" href="{{PDF}}">Download the report (PDF)</a>
             <a class="link-dark" href="agentic-finance-report.md" data-show-agent>Get the MD file</a><!--/L-->
+<!--M-->            <span class="btn soon" aria-disabled="true">Report (PDF) available {{DATE_SHORT}}</span>
+            <a class="link-dark" href="agentic-finance-report.md" data-show-agent>Get the MD file</a><!--/M-->
 <!--P-->            <span class="btn soon" aria-disabled="true">Report available {{DATE_SHORT}}</span>
             <a class="link-dark" href="#agent" data-show-agent>Get the MD file</a><!--/P-->
           </div>
@@ -107,6 +118,12 @@
               <img src="assets/img/report-cover.jpg" width="760" height="1075" alt="Cover of the Agentic Finance Report" fetchpriority="high">
             </picture>
           </a><!--/L-->
+<!--M-->          <div class="cover">
+            <picture>
+              <source srcset="assets/img/report-cover.webp" type="image/webp">
+              <img src="assets/img/report-cover.jpg" width="760" height="1075" alt="Cover of the Agentic Finance Report" fetchpriority="high">
+            </picture>
+          </div><!--/M-->
 <!--P-->          <div class="cover">
             <picture>
               <source srcset="assets/img/report-cover.webp" type="image/webp">
@@ -433,6 +450,8 @@
       <div class="chapters-cta">
 <!--L-->        <a class="btn" href="{{PDF}}">Download the report (PDF)</a>
         <a class="cta-link" href="agentic-finance-report.md" data-show-agent>Get the MD file</a><!--/L-->
+<!--M-->        <span class="btn soon" aria-disabled="true">Report (PDF) available {{DATE_SHORT}}</span>
+        <a class="cta-link" href="agentic-finance-report.md" data-show-agent>Get the MD file</a><!--/M-->
 <!--P-->        <span class="btn soon" aria-disabled="true">Report available {{DATE_SHORT}}</span>
         <span class="cta-note">Free download from {{DATE_SHORT}}, no email required.</span><!--/P-->
       </div>
@@ -513,6 +532,9 @@
       <div class="actions">
 <!--L-->        <a class="btn" href="{{PDF}}">Download the report (PDF)</a>
         <span class="gate">No email required</span><!--/L-->
+<!--M-->        <span class="btn soon" aria-disabled="true">Report (PDF) available {{DATE_SHORT}}</span>
+        <a class="link-dark" href="agentic-finance-report.md" data-show-agent>Get the MD file</a>
+        <span class="gate">Markdown edition available now. PDF from {{DATE_SHORT}}.</span><!--/M-->
 <!--P-->        <span class="btn soon" aria-disabled="true">Report available {{DATE_SHORT}}</span>
         <span class="gate">Free download from {{DATE_SHORT}}, no email required</span><!--/P-->
       </div>
@@ -535,6 +557,9 @@
 <!--L-->          <a href="{{PDF}}">Download PDF</a>
           <a href="agentic-finance-report.md">Full report in Markdown</a>
           <a href="agentic-finance.summary.md">Markdown summary for AI systems</a><!--/L-->
+<!--M-->          <span class="soon-note">The PDF follows on {{DATE_SHORT}} 2026.</span>
+          <a href="agentic-finance-report.md">Full report in Markdown</a>
+          <a href="agentic-finance.summary.md">Markdown summary for AI systems</a><!--/M-->
 <!--P-->          <span class="soon-note">The PDF and the Markdown editions will be available here from {{DATE_SHORT}} 2026.</span><!--/P-->
           <a href="mailto:research@agenticfinancereport.com">Press enquiries: research@agenticfinancereport.com</a>
         </div>
@@ -573,6 +598,16 @@
       <div class="agent-meta"><span>agentic-finance-report.md</span><span>text/markdown · UTF-8 · {{MD_WORDS}} words</span><a href="agentic-finance.summary.md">Short summary (.md)</a></div>
       <pre id="md-view" class="md-view" tabindex="0" aria-label="Report in Markdown"></pre>
 <!--/L-->
+<!--M-->        <div class="agent-actions">
+          <a class="btn" href="agentic-finance-report.md" download>Download .md</a>
+          <button type="button" class="copy" data-copy="#md-view">Copy Markdown</button>
+          <button type="button" class="copy" data-mode-switch="human">Back to the human view</button>
+        </div>
+      </div>
+      <p class="soon-note">This is a pre-release verification copy. The final edition publishes on {{DATE_SHORT}} 2026.</p>
+      <div class="agent-meta"><span>agentic-finance-report.md</span><span>text/markdown · UTF-8 · {{MD_WORDS}} words</span><a href="agentic-finance.summary.md">Short summary (.md)</a></div>
+      <pre id="md-view" class="md-view" tabindex="0" aria-label="Report in Markdown"></pre>
+<!--/M-->
 <!--P-->        <div class="agent-actions">
           <button type="button" class="copy" data-mode-switch="human">Back to the human view</button>
         </div>
@@ -586,6 +621,9 @@
 <!--L--><script type="text/markdown" id="report-md">
 {{MARKDOWN}}
 </script><!--/L-->
+<!--M--><script type="text/markdown" id="report-md">
+{{MARKDOWN}}
+</script><!--/M-->
 
   <footer class="site-footer">
     <div class="wrap">
