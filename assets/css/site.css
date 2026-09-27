@@ -163,22 +163,21 @@ html, body { overflow-x: clip; }
 .findings { background: var(--white); padding: 72px 0 120px; }
 .findings .h2 { margin-bottom: 0; }
 
-/* ---------- 7. chapters ---------- */
-.chapters { background: var(--white); padding: 120px 0; }
-.chapters .h2 { margin-bottom: 56px; }
-.toc { border-top: 1px solid rgba(23,19,31,0.14); margin: 0; padding: 0; list-style: none; }
-.toc li { display: grid; grid-template-columns: 110px minmax(0, 1fr) minmax(0, 220px); gap: 24px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid rgba(23,19,31,0.1); }
-.toc li.guest { background: var(--cream); }
-.toc .num { font-family: var(--mono); font-size: 20px; color: var(--blue-deep); }
-.toc .fw { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-.toc .chip { justify-self: start; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); border: 1px solid rgba(23,19,31,0.3); padding: 5px 8px; }
-.toc .title { font-family: var(--display); font-size: 21px; letter-spacing: -0.02em; color: var(--ink); }
-.toc .by { font-size: 15px; color: var(--muted); }
+/* ---------- 7. chapters (dark, 2026-09-27: matches .stack's ground) ---------- */
+.chapters { background: linear-gradient(180deg, #090B20 0%, #14153C 100%); padding: 120px 0; }
+.chapters .h2 { margin-bottom: 56px; color: var(--ink-dark); }
+.toc { border-top: 1px solid rgba(244,240,232,0.14); margin: 0; padding: 0; list-style: none; }
+.toc li { display: grid; grid-template-columns: 110px minmax(0, 1fr) minmax(0, 220px); gap: 24px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid rgba(244,240,232,0.14); }
+.toc li.guest { background: rgba(244,240,232,0.06); }
+.toc .num { font-family: var(--mono); font-size: 20px; color: var(--blue-light); }
+.toc .fw { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,240,232,0.6); }
+.toc .chip { justify-self: start; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dark); border: 1px solid rgba(244,240,232,0.35); padding: 5px 8px; }
+.toc .title { font-family: var(--display); font-size: 21px; letter-spacing: -0.02em; color: var(--ink-dark); }
+.toc .by { font-size: 15px; color: rgba(244,240,232,0.72); }
 .chapters-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin: 40px 0 0; }
-.chapters-cta .cta-link { display: inline-flex; align-items: center; height: 56px; color: var(--blue-deep); font-size: 16px; }
-.chapters-cta .cta-link:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.chapters-cta .cta-note { font-size: 14px; line-height: 1.5; color: var(--muted); }
-.chapters-cta .btn.soon, .chapters-cta .btn.soon:hover { background: rgba(23,19,31,0.04); color: var(--ink); border: 1px solid rgba(23,19,31,0.2); }
+.chapters-cta .cta-link { display: inline-flex; align-items: center; height: 56px; color: var(--blue-light); font-size: 16px; }
+.chapters-cta .cta-link:hover { color: var(--ink-dark); text-decoration: underline; text-underline-offset: 3px; }
+.chapters-cta .cta-note { font-size: 14px; line-height: 1.5; color: rgba(244,240,232,0.6); }
 @media (max-width: 640px) {
   .toc li { grid-template-columns: 72px minmax(0, 1fr); gap: 6px 16px; }
   .toc .by { grid-column: 2; }
