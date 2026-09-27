@@ -128,11 +128,9 @@ html, body { overflow-x: clip; }
   align-items: start;
 }
 .layer.base { background: rgba(244,240,232,0.08); }
-.layer.pending { border: 1px dashed rgba(143,180,255,0.6); background: transparent; }
 .layer .num { grid-area: num; font-family: var(--mono); font-size: 20px; line-height: 1.2; color: var(--blue-light); letter-spacing: -0.02em; }
 .layer .cond { grid-area: cond; }
 .layer .label { color: rgba(244,240,232,0.6); margin-bottom: 8px; }
-.layer.pending .label { color: var(--blue-light); }
 .layer .what { font-family: var(--display); font-size: 20px; letter-spacing: -0.02em; }
 .layer .meta { grid-area: meta; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
 .layer .owner { font-size: 16px; color: rgba(244,240,232,0.8); }
@@ -141,7 +139,6 @@ html, body { overflow-x: clip; }
 .layer .chapter { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244,240,232,0.45); border: 1px solid rgba(244,240,232,0.18); padding: 3px 8px; white-space: nowrap; }
 .layer .tag { grid-area: tag; justify-self: start; }
 .tag span { font-family: var(--mono); font-size: 10px; line-height: 1.5; letter-spacing: 0.14em; text-transform: uppercase; padding: 7px 12px; display: inline-block; color: var(--navy-base); background: var(--blue-light); }
-.layer.pending .tag span { color: var(--ink-dark); background: transparent; border: 1px solid rgba(143,180,255,0.6); }
 .stack .caption { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(244,240,232,0.55); margin-top: 24px; line-height: 1.6; }
 
 @media (min-width: 901px) {
