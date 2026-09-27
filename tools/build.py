@@ -55,7 +55,7 @@ CONFIG = {
     "DATE_ISO": "2026-09-29",
     "PDF": REPORT_PDF_PATH,
 }
-REPORT_RC = "RC30"   # the release the site is built from; swap for the final release at launch
+REPORT_RC = "RC31"   # the release the site is built from; swap for the final release at launch
 REPORT_PDF = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.pdf"
 REPORT_FULL_MD = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.full.md"
 REPORT_SUMMARY_MD = f"release/Agentic_Finance_Report_v1.0-{REPORT_RC}.summary.md"
