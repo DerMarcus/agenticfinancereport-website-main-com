@@ -515,3 +515,22 @@ html, body { overflow-x: clip; }
   .press-banners { padding: 56px 0 80px; }
   .pr-actions { flex-direction: column; align-items: flex-start; }
 }
+
+/* ---------- phones: tighter section rhythm and readable small type ---------- */
+@media (max-width: 640px) {
+  /* 120px top and bottom on neighbouring sections left ~240px of empty band between them. */
+  .argument, .chapters, .cite { padding: 64px 0; }
+  .stack { padding: 64px 0 56px; }
+  .findings { padding: 48px 0 64px; }
+  .contributors { padding: 64px 0; }
+  .closing { padding: 72px 0; }
+  .cvs-hero, .cvs-body { padding: 56px 0 60px; }
+  .cvs-foot { padding: 40px 0 44px; }
+  /* 10px uppercase mono is hard to read on a phone */
+  .label, .byline .label, .layer .label, .ev2-eyebrow, .toc .fw, .cvs-box .k, .cvs-tracks .k,
+  .cvs-partner .k, .cvs-ft .k, .contributors .group-label, .cite .label { font-size: 11px; }
+  .layer .chapter, .tag span, .toc .chip, .card .src, .ev-caveat .src { font-size: 10.5px; }
+  /* tap targets: the toggle sits inside a 44px pill, but the buttons themselves were 36px */
+  .mode button { height: 40px; }
+  .mono-link, .stack-links a, .legal-links a { padding: 4px 0; display: inline-block; }
+}
