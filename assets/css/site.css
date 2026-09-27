@@ -114,7 +114,7 @@ html, body { overflow-x: clip; }
 
 /* ---------- 4/5. stack (absorbed the former "preconditions" section, 2026-09-27: each row is now a
    precondition fused with the layer that satisfies it, its owner, status and covering chapter) ---------- */
-.stack { background: linear-gradient(180deg, #090B20 0%, #14153C 100%); padding: 120px 0; }
+.stack { background: linear-gradient(180deg, #090B20 0%, #14153C 100%); padding: 120px 0 88px; }
 .stack .h2 .hl { color: var(--blue-light); }
 .layers { display: flex; flex-direction: column; gap: 10px; margin: 56px 0 0; padding: 0; list-style: none; }
 .layer {
@@ -158,7 +158,9 @@ html, body { overflow-x: clip; }
 }
 
 /* ---------- 6. findings ---------- */
-.findings { background: var(--white); padding: 120px 0; }
+/* The stack band above is full-bleed dark, so a full 120px of white plus the module's own
+   56px margin left the module floating a long way below it. Tighter above, normal below. */
+.findings { background: var(--white); padding: 72px 0 120px; }
 .findings .h2 { margin-bottom: 0; }
 
 /* ---------- 7. chapters ---------- */
@@ -376,7 +378,7 @@ html, body { overflow-x: clip; }
 .site-footer .copyright + .copyright { margin-top: 10px; padding-top: 0; border-top: 0; }
 
 /* ---- Evidence module (single module: dark tab list + light panel, replaces the old cards + tabbed chart) ---- */
-.ev2 { margin-top: 56px; border: 1px solid rgba(23,19,31,0.14); }
+.ev2 { margin-top: 0; border: 1px solid rgba(23,19,31,0.14); }
 .ev2-left { background: linear-gradient(180deg, #090B20 0%, #14153C 100%); color: var(--ink-dark); padding: 40px 32px; }
 .ev2-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 18px; }
 .ev2-left .h2 { color: var(--ink-dark); font-size: clamp(26px, 3vw, 32px); max-width: none; margin: 0; }
