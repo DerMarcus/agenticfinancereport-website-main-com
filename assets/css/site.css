@@ -146,7 +146,9 @@ html, body { overflow-x: clip; }
 
 @media (min-width: 901px) {
   .layer {
-    grid-template-columns: 44px minmax(0, 1fr) minmax(0, 220px) auto;
+    /* Fixed owner and status columns so all five rows line up: each row is its own grid, so an
+       auto-sized status column would let row 05's longer tag pull its owner out of line. */
+    grid-template-columns: 44px minmax(0, 1fr) 210px 300px;
     grid-template-areas: "num cond meta tag";
     align-items: center;
     gap: 16px 32px;
