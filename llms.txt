@@ -14,9 +14,9 @@ Contact: research@agenticfinancereport.com
 
 ## Report
 
-- [Full report (Markdown)](https://www.agenticfinancereport.com/agentic-finance-report.md): every chapter, both guest contributions, every source and the disclaimer, with printed page markers. Available now, ahead of the PDF.
-- [Machine-readable summary (Markdown)](https://www.agenticfinancereport.com/agentic-finance.summary.md): available now.
-- The full report (PDF) will be published at https://www.agenticfinancereport.com/report.pdf on 29 September 2026.
+- [Full report (PDF)](https://www.agenticfinancereport.com/report.pdf): 60 pages (59 numbered), including sources and the co-authors' disclaimer
+- [Full report (Markdown)](https://www.agenticfinancereport.com/agentic-finance-report.md): every chapter, both guest contributions, every source and the disclaimer, with printed page markers
+- [Machine-readable summary (Markdown)](https://www.agenticfinancereport.com/agentic-finance.summary.md)
 
 ## First agent built on the report's principles
 

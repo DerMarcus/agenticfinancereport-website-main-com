@@ -32,7 +32,7 @@ import shutil
 import subprocess
 import sys
 
-PRELAUNCH = True
+PRELAUNCH = False
 
 # Only meaningful while PRELAUNCH is True: publish both Markdown editions now, while the PDF stays held back
 # until launch. See the module docstring, state "M". Ignored once PRELAUNCH is False.
